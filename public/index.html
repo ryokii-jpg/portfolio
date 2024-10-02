@@ -1,43 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <nav class="navbar">
+    <ul>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+  </nav>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <div class="container">
+    <header class="intro">
+      <div class="column-left">
+        <h1>Hi, I'm Mike Fernando D. Bunag</h1>
+        <p>Welcome to my portfolio! I'm a Computer Engineering Student with a passion for Software Development.</p>
+      </div>
+      <div class="column-right">
+        <img src="profile.jpg" alt="Your Photo" class="styled-photo">
+      </div>
+    </header>
+  </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<section id="about" class="about-me">
+  <div class="about-images">
+    <img src="picture.jpg" alt="Your Image" class="about-img">
+  </div>
+
+  <div class="about-text">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate Computer Engineering student at Holy Angel University eager to learn new things in software development and explore the world of programming.
+      <br><br>
+      Outside of coding, I enjoy photography, playing instruments, and exploring new places.
+    </p>
+  </div>
+</section>
+
+<section id="projects" class="projects-section">
+  <h2 class="projects-title">My Projects</h2>
+  <div class="projects-list">
+    <div class="project-item">
+      <div class="project-image">
+        <img src="image2.png" alt="Project 1 Image" class="project-img">
+      </div>
+      <div class="project-text">
+        <h3>Zodiacs Portal</h3>
+        <p>
+          A gaming website that focuses on viewing of overall players with its leaderboards.
+        </p>
+      </div>
+    </div>
+</section>
+
+<script>
+  document.querySelectorAll('.nav-link').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth' 
+      });
+    });
+  });
+</script>
+
+
+</body>
 </html>
