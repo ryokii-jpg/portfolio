@@ -3,77 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#080b0d">
+  <meta name="description" content="Mike Fernando D. Bunag — Computer Engineer and software developer building reliable digital systems.">
+  <title>Mike Bunag // Systems Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <nav class="navbar">
+  <div class="noise" aria-hidden="true"></div>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="#home"><span class="brand-mark">MB</span><span>MIKE.BUNAG</span></a>
+    <div class="nav-status"><i></i> SYSTEM ONLINE</div>
     <ul>
-      <li><a href="#about">About Me</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about"><span>01</span> Profile</a></li>
+      <li><a href="#projects"><span>02</span> Deployments</a></li>
     </ul>
   </nav>
 
-  <div class="container">
-    <header class="intro">
-      <div class="column-left">
-        <h1>Hi, I'm Mike Fernando D. Bunag</h1>
-        <p>Welcome to my portfolio! I'm a Computer Engineer with a passion for Software Development.</p>
-      </div>
-      <div class="column-right">
-        <img src="profile.jpg" alt="Your Photo" class="styled-photo">
-      </div>
-    </header>
-  </div>
-
-<section id="about" class="about-me">
-  <div class="about-images">
-    <img src="picture.jpg" alt="Your Image" class="about-img">
-  </div>
-
-  <div class="about-text">
-    <h2>About Me</h2>
-    <p>
-      I'm a passionate Computer Engineer, graduatetd at Holy Angel University eager to learn new things in software development and explore the world of programming.
-      <br><br>
-      Outside of coding, I enjoy photography, playing instruments, and exploring new places.
-    </p>
-  </div>
-</section>
-
-<section id="projects" class="projects-section">
-  <h2 class="projects-title">My Projects</h2>
-  <div class="projects-list">
-    <div class="project-item">
-      <div class="project-image">
-        <img src="image2.png" alt="Project 1 Image" class="project-img">
-      </div>
-      <div class="project-text">
-        <h3 class="project-title">Zodiacs Portal</h3>
-        <p class="project-desc">
-          Zodiacs Gaming is a full-stack esports community platform built with React, TypeScript, Tailwind CSS, and Supabase (PostgreSQL). It features tournament hosting with real-time brackets (Single Elimination & FFA), guild and team management, player recruitment, quest systems, an in-app shop, and tiered admin moderation — all secured with Row-Level Security policies and powered by Supabase Edge Functions for backend logic. The frontend leverages Vite, TanStack React Query, Framer Motion, and shadcn/ui for a responsive, real-time gaming experience.
-        </p>
-        <div class="project-meta">
-          <a class="visit-btn" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          <span class="tech-pill">React • TypeScript</span>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>ENGINEER ID // MFB-01</span></p>
+        <h1>Human insight.<br><em>Machine precision.</em></h1>
+        <p class="hero-intro">I’m Mike Fernando D. Bunag, a Computer Engineer building software where thoughtful interfaces meet dependable systems.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#projects">Explore systems <span>↗</span></a>
+          <a class="text-link" href="#about">Read operator profile ↓</a>
+        </div>
+        <div class="system-strip" aria-label="Specialties">
+          <div><small>FOCUS</small><strong>Software Engineering</strong></div>
+          <div><small>MODE</small><strong>Build / Learn / Iterate</strong></div>
+          <div><small>LOCATION</small><strong>Philippines</strong></div>
         </div>
       </div>
-    </div>
-</section>
 
-<script>
-  document.querySelectorAll('.nav-link').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth' 
-      });
-    });
-  });
-</script>
+      <div class="hero-visual">
+        <div class="target-ring" aria-hidden="true"></div>
+        <div class="photo-frame">
+          <div class="frame-label">OPTICAL_FEED / 01</div>
+          <img src="profile.jpg" alt="Mike Bunag in an urban setting">
+          <span class="corner top-left"></span><span class="corner top-right"></span>
+          <span class="corner bottom-left"></span><span class="corner bottom-right"></span>
+          <div class="scan-line" aria-hidden="true"></div>
+        </div>
+        <div class="telemetry telemetry-a"><small>CORE</small><b>ONLINE</b><span>98.7%</span></div>
+        <div class="telemetry telemetry-b"><small>NEXT OBJECTIVE</small><b>ADVANCE</b><span>AI + SYSTEMS</span></div>
+      </div>
+    </section>
 
+    <section id="about" class="about-section">
+      <div class="section-index"><span>01</span><p>OPERATOR<br>PROFILE</p></div>
+      <div class="about-photo">
+        <img src="picture.jpg" alt="Mike Bunag">
+        <p>FIELD RECORD // PERSONAL ARCHIVE</p>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">BACKGROUND / CAPABILITIES</p>
+        <h2>Engineering curiosity into <em>working systems.</em></h2>
+        <p>I’m a Computer Engineering graduate from Holy Angel University, driven by the craft of turning complex problems into clear, useful software. I’m especially interested in the space where intelligent automation, robust backends, and human-centered products meet.</p>
+        <p>Outside the terminal, photography, music, and unfamiliar places keep my perspective calibrated.</p>
+        <div class="capability-grid">
+          <span>01 / FULL-STACK</span><span>02 / DATABASES</span>
+          <span>03 / AUTOMATION</span><span>04 / AI SYSTEMS</span>
+        </div>
+      </div>
+    </section>
 
+    <section id="projects" class="projects-section">
+      <div class="projects-heading">
+        <div><p class="eyebrow">SELECTED DEPLOYMENTS</p><h2>Systems built<br><em>for real users.</em></h2></div>
+        <p class="project-count">ARCHIVE<br><strong>001</strong> / 001</p>
+      </div>
+      <article class="project-card">
+        <div class="project-number">P-001</div>
+        <a class="project-image" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">
+          <img src="image2.png" alt="Zodiacs Portal interface">
+          <span>LIVE SYSTEM ↗</span>
+        </a>
+        <div class="project-copy">
+          <p class="eyebrow">COMMUNITY PLATFORM / FULL-STACK</p>
+          <h3>Zodiacs Portal</h3>
+          <p>A real-time esports ecosystem for tournaments, guilds, recruitment, quests, commerce, and tiered moderation. Designed as one coherent operational platform rather than a collection of disconnected features.</p>
+          <ul class="tech-list"><li>React</li><li>TypeScript</li><li>Supabase</li><li>Edge Functions</li><li>PostgreSQL</li></ul>
+          <a class="primary-btn" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">Launch deployment <span>↗</span></a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer><span>© 2026 MIKE BUNAG</span><span>ENGINEERED WITH INTENT</span><a href="#home">RETURN TO TOP ↑</a></footer>
 </body>
 </html>
