@@ -71,6 +71,28 @@
     .projects-grid .research-preview { grid-column: 2; min-height: 330px; border-right: 0; border-bottom: 1px solid var(--line); }
     .projects-grid .project-copy { grid-column: 2; padding: 44px 40px; justify-content: flex-start; }
     .projects-grid .project-copy h3 { font-size: clamp(2rem,3vw,3.2rem); }
+    .projects-grid .project-card { cursor: pointer; transition: transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
+    .projects-grid .project-card:hover,.projects-grid .project-card:focus-visible { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 22px 60px rgba(0,0,0,.35); outline: none; }
+    .projects-grid .project-image,.projects-grid .research-preview { min-height: 220px; height: 220px; }
+    .projects-grid .project-copy { padding: 28px 30px 30px; }
+    .projects-grid .project-copy .eyebrow { margin-bottom: 15px; }
+    .projects-grid .project-copy h3 { font-size: clamp(1.7rem,2.3vw,2.5rem); margin-bottom: 14px; }
+    .projects-grid .project-copy > p:not(.eyebrow) { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-bottom: 18px; font-size: .94rem; line-height: 1.6; }
+    .projects-grid .project-copy > p:nth-of-type(n+3) { display: none; }
+    .projects-grid .tech-list { margin-bottom: 20px; }
+    .card-action { margin-top: auto; color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .14em; }
+    .detail-page { min-height: calc(100vh - 78px); padding: 8vh 4vw; background-image: linear-gradient(rgba(114,226,230,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(114,226,230,.035) 1px,transparent 1px); background-size: 48px 48px; }
+    .detail-back { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 45px; color: var(--cyan); text-decoration: none; font: 600 10px var(--mono); letter-spacing: .12em; }
+    .detail-layout { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(360px,.95fr); border: 1px solid var(--line); background: rgba(8,11,13,.94); }
+    .detail-media { min-height: 560px; border-right: 1px solid var(--line); background: var(--panel); }
+    .detail-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: saturate(.72) contrast(1.08); }
+    .detail-content { padding: clamp(35px,5vw,80px); align-self: center; }
+    .detail-content h2 { font-size: clamp(2.8rem,5vw,5.8rem); margin-bottom: 30px; }
+    .detail-content > p:not(.eyebrow) { color: #aab2b4; font-size: 1rem; line-height: 1.8; margin-bottom: 20px; }
+    .detail-features { margin: 30px 0; list-style: none; border-top: 1px solid var(--line); }
+    .detail-features li { padding: 14px 0; border-bottom: 1px solid var(--line); color: #b8c1c3; font: 10px var(--mono); letter-spacing: .06em; }
+    .detail-features li::before { content: "//"; color: var(--amber); margin-right: 12px; }
+    .detail-research-media { padding: 5vw; display: grid; place-items: center; background: radial-gradient(circle at 20% 10%,rgba(70,207,255,.17),transparent 30%),radial-gradient(circle at 85% 40%,rgba(180,80,255,.17),transparent 36%),#070c22; }
     .research-preview { position: relative; min-height: 480px; overflow: hidden; border-right: 1px solid var(--line); padding: 28px; background: radial-gradient(circle at 20% 10%,rgba(70,207,255,.16),transparent 30%),radial-gradient(circle at 85% 40%,rgba(180,80,255,.16),transparent 36%),#070c22; }
     .research-preview::before { content: ""; position: absolute; inset: 0; opacity: .7; background-image: radial-gradient(circle,#9edbff 0 1px,transparent 1.5px); background-size: 73px 61px; }
     .lab-window { position: relative; z-index: 1; height: 100%; min-height: 420px; border: 1px solid #284665; background: rgba(8,18,45,.86); box-shadow: 0 24px 70px rgba(0,0,0,.4); }
@@ -87,7 +109,7 @@
     .lab-modules { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; padding: 0 12px; }
     .lab-modules div { min-height: 105px; border: 1px solid #263b60; border-radius: 5px; padding: 12px; color: #dbe5fa; font: 600 9px var(--mono); background: rgba(17,30,65,.78); }
     .project-status { width: max-content; padding: 11px 13px; border: 1px solid var(--cyan); color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .1em; }
-    @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:400px}}
+    @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
     @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview{min-height:280px}.projects-grid .project-copy{padding:34px 24px}.research-preview{padding:14px}.lab-window{min-height:350px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
   </style>
 </head>
@@ -161,7 +183,7 @@
         <p class="project-count">ARCHIVE<br><strong>002</strong> / 002</p>
       </div>
       <div class="projects-grid">
-      <article class="project-card">
+      <article class="project-card" data-view="zodiacs-detail" role="link" tabindex="0" aria-label="View Zodiacs Portal project details">
         <div class="project-number">P-001</div>
         <a class="project-image" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">
           <img src="image2.png" alt="Zodiacs Portal interface">
@@ -172,10 +194,10 @@
           <h3>Zodiacs Portal</h3>
           <p>A real-time esports ecosystem for tournaments, guilds, recruitment, quests, commerce, and tiered moderation. Designed as one coherent operational platform rather than a collection of disconnected features.</p>
           <ul class="tech-list"><li>React</li><li>TypeScript</li><li>Supabase</li><li>Edge Functions</li><li>PostgreSQL</li></ul>
-          <a class="primary-btn" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">Launch deployment <span>↗</span></a>
+          <span class="card-action">OPEN PROJECT DOSSIER →</span>
         </div>
       </article>
-      <article class="project-card">
+      <article class="project-card" data-view="research-detail" role="link" tabindex="0" aria-label="View Research Lab Incremental project details">
         <div class="project-number">P-002</div>
         <div class="research-preview" role="img" aria-label="Research Lab Incremental galaxy-themed game interface">
           <div class="lab-window">
@@ -192,11 +214,64 @@
           <p>A galaxy-themed incremental game that grows a garage lab into a reality-bending science empire. Its layered economy moves through standard progression, Prestige via “Publish Findings,” and Ascension via “Rewrite Scientific Legacy,” with permanent multipliers and automation unfolding across each loop.</p>
           <p>Three dependency-driven skill trees, six currencies, scaling costs, random events, progressive automation, and tiered local saves form a self-contained demonstration of state management, balance design, and dynamic UI rendering—with no external libraries or build tooling.</p>
           <ul class="tech-list"><li>Vanilla JavaScript</li><li>HTML</li><li>CSS</li><li>localStorage</li><li>Zero Dependencies</li></ul>
-          <div class="project-status">SELF-CONTAINED BROWSER BUILD</div>
+          <span class="card-action">OPEN PROJECT DOSSIER →</span>
         </div>
       </article>
       </div>
     </section>
+    </div>
+
+    <div class="view" data-panel="zodiacs-detail" aria-hidden="true">
+      <section class="detail-page">
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <div class="detail-layout">
+          <div class="detail-media"><img src="image2.png" alt="Zodiacs Portal application interface"></div>
+          <div class="detail-content">
+            <p class="eyebrow">PROJECT DOSSIER / P-001</p>
+            <h2>Zodiacs<br><em>Portal.</em></h2>
+            <p>A full-stack esports community platform built for real-time competition, organization, and player engagement. It combines tournament operations, guild systems, recruitment, progression, commerce, and moderation within one cohesive product.</p>
+            <ul class="detail-features">
+              <li>Real-time single-elimination and free-for-all brackets</li>
+              <li>Guild, team, recruitment, quest, and shop systems</li>
+              <li>Tiered moderation secured through Row-Level Security</li>
+              <li>Supabase Edge Functions for protected backend workflows</li>
+            </ul>
+            <ul class="tech-list"><li>React</li><li>TypeScript</li><li>Supabase</li><li>PostgreSQL</li><li>TanStack Query</li></ul>
+            <a class="primary-btn" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">Launch live system <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="view" data-panel="research-detail" aria-hidden="true">
+      <section class="detail-page">
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <div class="detail-layout">
+          <div class="detail-media detail-research-media">
+            <div class="lab-window">
+              <div class="lab-topbar"><span class="lab-logo">RLI</span><span>RESEARCH LAB INCREMENTAL</span></div>
+              <div class="lab-stats"><span>RP<b>299</b></span><span>FUNDING<b>$177</b></span><span>KNOWLEDGE<b>4.3</b></span></div>
+              <div class="lab-tabs"><i></i><i></i><i></i><i></i></div>
+              <div class="research-core"><strong>Generate Research</strong><small>TURN IDEAS INTO RESEARCH POINTS</small></div>
+              <div class="lab-modules"><div>UPGRADE SHOP</div><div>SCIENTISTS</div></div>
+            </div>
+          </div>
+          <div class="detail-content">
+            <p class="eyebrow">PROJECT DOSSIER / P-002</p>
+            <h2>Research Lab<br><em>Incremental.</em></h2>
+            <p>A galaxy-themed idle game where a garage research operation evolves into a reality-bending science empire. The experience is built entirely with browser-native technology and runs by opening a single HTML file.</p>
+            <ul class="detail-features">
+              <li>Standard, Prestige, and Ascension progression layers</li>
+              <li>Three branching skill trees with node dependencies</li>
+              <li>Six currencies, scaling costs, and stacked multipliers</li>
+              <li>Progressive automation and random research events</li>
+              <li>Persistent localStorage saves with tiered reset options</li>
+            </ul>
+            <ul class="tech-list"><li>Vanilla JavaScript</li><li>HTML</li><li>CSS</li><li>localStorage</li><li>Zero Dependencies</li></ul>
+            <div class="project-status">SELF-CONTAINED BROWSER BUILD</div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -206,7 +281,8 @@
       const panels = [...document.querySelectorAll('[data-panel]')];
       const tabs = [...document.querySelectorAll('.tab-link')];
       const transition = document.querySelector('.glitch-transition');
-      let currentView = location.hash === '#deployments' ? 'deployments' : 'profile';
+      const requestedView = location.hash.slice(1);
+      let currentView = panels.some(panel => panel.dataset.panel === requestedView) ? requestedView : 'profile';
       let switching = false;
 
       function showView(view, animate = true) {
@@ -220,7 +296,10 @@
             panel.classList.toggle('active', selected);
             panel.setAttribute('aria-hidden', String(!selected));
           });
-          tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.view === view));
+          tabs.forEach(tab => {
+            const selected = tab.dataset.view === view || (view.endsWith('-detail') && tab.dataset.view === 'deployments');
+            tab.classList.toggle('active', selected);
+          });
           currentView = view;
           history.replaceState(null, '', `#${view}`);
           window.scrollTo(0, 0);
@@ -244,9 +323,18 @@
 
       document.querySelectorAll('[data-view]').forEach(link => {
         link.addEventListener('click', event => {
+          if (event.target.closest('a[target="_blank"]')) return;
           event.preventDefault();
           showView(link.dataset.view);
         });
+        if (link.getAttribute('role') === 'link') {
+          link.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              showView(link.dataset.view);
+            }
+          });
+        }
       });
 
       panels.forEach(panel => panel.classList.remove('active'));
