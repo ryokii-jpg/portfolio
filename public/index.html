@@ -93,6 +93,25 @@
     .detail-features li { padding: 14px 0; border-bottom: 1px solid var(--line); color: #b8c1c3; font: 10px var(--mono); letter-spacing: .06em; }
     .detail-features li::before { content: "//"; color: var(--amber); margin-right: 12px; }
     .detail-research-media { padding: 5vw; display: grid; place-items: center; background: radial-gradient(circle at 20% 10%,rgba(70,207,255,.17),transparent 30%),radial-gradient(circle at 85% 40%,rgba(180,80,255,.17),transparent 36%),#070c22; }
+    .supply-preview { position: relative; grid-column: 2; height: 220px; overflow: hidden; border-bottom: 1px solid var(--line); padding: 18px; background: #071421; }
+    .supply-shell { display: grid; grid-template-columns: 25% 1fr; height: 100%; border: 1px solid #264058; background: #091725; font: 7px var(--mono); color: #9bb0c3; }
+    .supply-side { padding: 14px 10px; border-right: 1px solid #21364a; background: #0a1c36; }
+    .safe-logo { width: 32px; height: 32px; margin: 0 auto 10px; border-radius: 8px; background: linear-gradient(135deg,#55738c,#1b324b); filter: blur(3px); }
+    .redacted-title { height: 7px; width: 68%; margin: 0 auto 18px; background: #8193a2; filter: blur(3px); }
+    .supply-nav-line { height: 7px; margin: 12px 2px; border-radius: 3px; background: #213b58; }
+    .supply-main { padding: 12px; }
+    .supply-user { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+    .redacted-user { width: 90px; height: 8px; background: #718397; filter: blur(4px); }
+    .supply-banner { height: 42px; margin-bottom: 10px; border: 1px solid #78551c; border-radius: 4px; background: #56380f; opacity: .8; }
+    .supply-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+    .supply-metrics span { height: 38px; border: 1px solid #27445c; border-radius: 3px; background: #11283a; }
+    .supply-table { height: 62px; margin-top: 10px; border: 1px solid #27445c; border-radius: 3px; background: repeating-linear-gradient(0deg,#102538 0 14px,#1a3144 15px); }
+    .detail-supply-media { padding: 5vw; display: grid; place-items: center; background: radial-gradient(circle at 70% 20%,rgba(31,122,190,.2),transparent 35%),#071421; }
+    .detail-supply-media .supply-shell { width: 100%; min-height: 380px; font-size: 10px; }
+    .detail-supply-media .safe-logo { width: 58px; height: 58px; }
+    .detail-supply-media .supply-banner { height: 82px; }
+    .detail-supply-media .supply-metrics span { height: 70px; }
+    .detail-supply-media .supply-table { height: 145px; }
     .research-preview { position: relative; min-height: 480px; overflow: hidden; border-right: 1px solid var(--line); padding: 28px; background: radial-gradient(circle at 20% 10%,rgba(70,207,255,.16),transparent 30%),radial-gradient(circle at 85% 40%,rgba(180,80,255,.16),transparent 36%),#070c22; }
     .research-preview::before { content: ""; position: absolute; inset: 0; opacity: .7; background-image: radial-gradient(circle,#9edbff 0 1px,transparent 1.5px); background-size: 73px 61px; }
     .lab-window { position: relative; z-index: 1; height: 100%; min-height: 420px; border: 1px solid #284665; background: rgba(8,18,45,.86); box-shadow: 0 24px 70px rgba(0,0,0,.4); }
@@ -110,7 +129,7 @@
     .lab-modules div { min-height: 105px; border: 1px solid #263b60; border-radius: 5px; padding: 12px; color: #dbe5fa; font: 600 9px var(--mono); background: rgba(17,30,65,.78); }
     .project-status { width: max-content; padding: 11px 13px; border: 1px solid var(--cyan); color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .1em; }
     @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
-    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
     @media(max-width:768px){
       html{scroll-padding-top:68px}
       body{width:100%;overflow-x:hidden}
@@ -156,6 +175,11 @@
       .detail-layout{display:flex;flex-direction:column}
       .detail-media{width:100%;min-height:260px;height:260px}
       .detail-research-media{height:auto;min-height:390px;padding:18px}
+      .detail-supply-media{height:auto;min-height:390px;padding:16px}
+      .detail-supply-media .supply-shell{min-height:350px;grid-template-columns:28% 1fr}
+      .detail-supply-media .supply-banner{height:65px}
+      .detail-supply-media .supply-metrics span{height:55px}
+      .detail-supply-media .supply-table{height:120px}
       .detail-research-media .lab-window{width:100%}
       .detail-content{padding:38px 22px 45px}
       .detail-content h2{font-size:clamp(2.55rem,13vw,4.5rem);line-height:.92;margin-bottom:24px}
@@ -250,7 +274,7 @@
     <section id="deployments" class="projects-section">
       <div class="projects-heading">
         <div><p class="eyebrow">SELECTED DEPLOYMENTS</p><h2>Systems built<br><em>for real users.</em></h2></div>
-        <p class="project-count">ARCHIVE<br><strong>002</strong> / 002</p>
+        <p class="project-count">ARCHIVE<br><strong>003</strong> / 003</p>
       </div>
       <div class="projects-grid">
       <article class="project-card" data-view="zodiacs-detail" role="link" tabindex="0" aria-label="View Zodiacs Portal project details">
@@ -284,6 +308,22 @@
           <p>A galaxy-themed incremental game that grows a garage lab into a reality-bending science empire. Its layered economy moves through standard progression, Prestige via “Publish Findings,” and Ascension via “Rewrite Scientific Legacy,” with permanent multipliers and automation unfolding across each loop.</p>
           <p>Three dependency-driven skill trees, six currencies, scaling costs, random events, progressive automation, and tiered local saves form a self-contained demonstration of state management, balance design, and dynamic UI rendering—with no external libraries or build tooling.</p>
           <ul class="tech-list"><li>Vanilla JavaScript</li><li>HTML</li><li>CSS</li><li>localStorage</li><li>Zero Dependencies</li></ul>
+          <span class="card-action">OPEN PROJECT DOSSIER →</span>
+        </div>
+      </article>
+      <article class="project-card" data-view="supply-detail" role="link" tabindex="0" aria-label="View Supply Request and Inventory Management System project details">
+        <div class="project-number">P-003</div>
+        <div class="supply-preview" role="img" aria-label="Redacted internal supply management dashboard preview">
+          <div class="supply-shell">
+            <div class="supply-side"><div class="safe-logo"></div><div class="redacted-title"></div><div class="supply-nav-line"></div><div class="supply-nav-line"></div><div class="supply-nav-line"></div></div>
+            <div class="supply-main"><div class="supply-user"><span class="redacted-user"></span></div><div class="supply-banner"></div><div class="supply-metrics"><span></span><span></span><span></span></div><div class="supply-table"></div></div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <p class="eyebrow">INTERNAL OPERATIONS / FULL-STACK</p>
+          <h3>Supply Request &amp; Inventory System</h3>
+          <p>A secure internal platform that replaces paper-based supply requests with one clear digital workflow—from requesting and approval to stock issuance, procurement, and reporting.</p>
+          <ul class="tech-list"><li>Node.js</li><li>Express</li><li>EJS</li><li>SQLite</li><li>ExcelJS</li></ul>
           <span class="card-action">OPEN PROJECT DOSSIER →</span>
         </div>
       </article>
@@ -339,6 +379,36 @@
             </ul>
             <ul class="tech-list"><li>Vanilla JavaScript</li><li>HTML</li><li>CSS</li><li>localStorage</li><li>Zero Dependencies</li></ul>
             <div class="project-status">SELF-CONTAINED BROWSER BUILD</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="view" data-panel="supply-detail" aria-hidden="true">
+      <section class="detail-page">
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <div class="detail-layout">
+          <div class="detail-media detail-supply-media">
+            <div class="supply-shell" role="img" aria-label="Privacy-redacted supply and inventory dashboard">
+              <div class="supply-side"><div class="safe-logo"></div><div class="redacted-title"></div><div class="supply-nav-line"></div><div class="supply-nav-line"></div><div class="supply-nav-line"></div><div class="supply-nav-line"></div></div>
+              <div class="supply-main"><div class="supply-user"><span class="redacted-user"></span></div><div class="supply-banner"></div><div class="supply-metrics"><span></span><span></span><span></span></div><div class="supply-table"></div></div>
+            </div>
+          </div>
+          <div class="detail-content">
+            <p class="eyebrow">PROJECT DOSSIER / P-003</p>
+            <h2>Supply Request<br><em>&amp; Inventory.</em></h2>
+            <p>A full-stack operations platform that turns a manual requisition process into a clear, trackable digital workflow. Staff can request supplies, authorized teams can review and issue them, and inventory updates automatically as each request moves forward.</p>
+            <p>The system connects everyday supply work with accurate stock records and audit-ready reporting, giving every role a focused dashboard without exposing controls they do not need.</p>
+            <ul class="detail-features">
+              <li>Five role-specific dashboards and permission sets</li>
+              <li>Multi-stage approval, partial issuance, and procurement routing</li>
+              <li>Live stock levels, reorder alerts, and inventory reconciliation</li>
+              <li>Weighted-average costing and accounting-grade reports</li>
+              <li>Formatted Excel exports with flexible reporting filters</li>
+              <li>Audit logs, backup and restore, real-time sync, and LAN HTTPS</li>
+            </ul>
+            <ul class="tech-list"><li>Node.js</li><li>Express</li><li>EJS</li><li>SQLite</li><li>ExcelJS</li><li>Server-Sent Events</li></ul>
+            <div class="project-status">PRIVATE INTERNAL DEPLOYMENT</div>
           </div>
         </div>
       </section>
