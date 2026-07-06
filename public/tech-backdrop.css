@@ -103,12 +103,29 @@
 .hero-visual { background-color: rgba(8, 11, 13, .34); }
 .about-section { background: rgba(8, 11, 13, .88); }
 
+/* CHARMS is a UI screenshot, so preserve the complete dashboard instead of cropping it like photography. */
+[data-panel="charms-detail"] .detail-media {
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 2.5vw, 42px);
+  background: #07111a;
+}
+
+[data-panel="charms-detail"] .detail-media img {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 156px);
+  object-fit: contain;
+  object-position: center;
+}
+
 @media (max-width: 768px) {
   .tech-backdrop { inset: 68px 0 0; }
   .tech-orbit-a { width: 110vw; right: -60vw; top: 4vh; }
   .tech-orbit-b { width: 80vw; left: -52vw; }
   .tech-circuit { width: 65vw; opacity: .22; }
   .hero-copy { background: rgba(8, 11, 13, .78); }
+  [data-panel="charms-detail"] .detail-media img { max-height: 460px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
