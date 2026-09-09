@@ -3,222 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f6f5ef">
+  <meta name="theme-color" content="#050914">
   <meta name="description" content="Mike Fernando — AI-Augmented Full Stack Developer using artificial intelligence throughout the complete development lifecycle.">
-  <title>Mike Fernando — A little world of working systems</title>
+  <title>Mike Fernando — Orbital Systems Station</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
-  <style>
-    .view { display: none; }
-    .view.active { display: block; }
-    .navbar li a.active { color: var(--cyan); }
-    .deployments-view { min-height: calc(100vh - 78px); }
-    .glitch-transition {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: grid;
-      place-items: center;
-      pointer-events: none;
-      visibility: hidden;
-      background: #050708;
-      color: var(--cyan);
-      font: 500 10px var(--mono);
-      letter-spacing: .3em;
-      opacity: 0;
-    }
-    .glitch-transition::before,
-    .glitch-transition::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(114,226,230,.11) 4px, transparent 5px);
-    }
-    .glitch-transition::after {
-      background: linear-gradient(90deg, transparent 0 12%, rgba(241,167,59,.24) 12% 21%, transparent 21% 64%, rgba(114,226,230,.22) 64% 78%, transparent 78%);
-      mix-blend-mode: screen;
-    }
-    .glitch-transition.pulse { visibility: visible; animation: signal-break .68s steps(1) both; }
-    .glitch-transition.pulse::before { animation: scan-tear .12s steps(2) 5; }
-    .glitch-transition.pulse::after { animation: rgb-shift .09s steps(2) 6; }
-    .is-glitching main { animation: frame-jump .16s steps(2) 3; }
-    @keyframes signal-break {
-      0% { opacity: 0; clip-path: inset(47% 0 49%); }
-      10% { opacity: .9; clip-path: inset(8% 0 70%); }
-      22% { opacity: .3; clip-path: inset(76% 0 7%); }
-      34%, 58% { opacity: 1; clip-path: inset(0); }
-      70% { opacity: .7; clip-path: inset(31% 0 32%); }
-      84% { opacity: .35; clip-path: inset(4% 0 83%); }
-      100% { opacity: 0; clip-path: inset(49% 0 49%); }
-    }
-    @keyframes scan-tear { 0% { transform: translateY(-18px) skewY(1deg); } 50% { transform: translateY(24px) skewY(-1deg); } }
-    @keyframes rgb-shift { 0% { transform: translateX(-12px); filter: hue-rotate(90deg); } 50% { transform: translateX(14px); filter: hue-rotate(-90deg); } }
-    @keyframes frame-jump { 0% { transform: translate(0); filter: none; } 50% { transform: translate(7px,-3px); filter: contrast(1.8) hue-rotate(35deg); } }
-    @media (prefers-reduced-motion: reduce) {
-      .glitch-transition.pulse { animation: reduced-switch .25s ease both; }
-      .glitch-transition.pulse::before, .glitch-transition.pulse::after, .is-glitching main { animation: none; }
-      @keyframes reduced-switch { 50% { opacity: 1; visibility: visible; } }
-    }
-  </style>
-  <style>
-    .project-card + .project-card { margin-top: 32px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; align-items: stretch; }
-    .projects-grid .project-card { grid-template-columns: 44px minmax(0,1fr); grid-template-rows: auto 1fr; margin-top: 0; }
-    .projects-grid .project-number { grid-row: 1 / 3; }
-    .projects-grid .project-image,
-    .projects-grid .research-preview { grid-column: 2; min-height: 330px; border-right: 0; border-bottom: 1px solid var(--line); }
-    .projects-grid .project-copy { grid-column: 2; padding: 44px 40px; justify-content: flex-start; }
-    .projects-grid .project-copy h3 { font-size: clamp(2rem,3vw,3.2rem); }
-    .projects-grid .project-card { cursor: pointer; transition: transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
-    .projects-grid .project-card:hover,.projects-grid .project-card:focus-visible { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 22px 60px rgba(0,0,0,.35); outline: none; }
-    .projects-grid .project-image,.projects-grid .research-preview { min-height: 220px; height: 220px; }
-    .projects-grid .project-copy { padding: 28px 30px 30px; }
-    .projects-grid .project-copy .eyebrow { margin-bottom: 15px; }
-    .projects-grid .project-copy h3 { font-size: clamp(1.7rem,2.3vw,2.5rem); margin-bottom: 14px; }
-    .projects-grid .project-copy > p:not(.eyebrow) { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-bottom: 18px; font-size: .94rem; line-height: 1.6; }
-    .projects-grid .project-copy > p:nth-of-type(n+3) { display: none; }
-    .projects-grid .tech-list { margin-bottom: 20px; }
-    .card-action { margin-top: auto; color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .14em; }
-    .detail-page { min-height: calc(100vh - 78px); padding: 8vh 4vw; background-image: linear-gradient(rgba(114,226,230,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(114,226,230,.035) 1px,transparent 1px); background-size: 48px 48px; }
-    .detail-back { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 45px; color: var(--cyan); text-decoration: none; font: 600 10px var(--mono); letter-spacing: .12em; }
-    .detail-layout { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(360px,.95fr); border: 1px solid var(--line); background: rgba(8,11,13,.94); }
-    .detail-media { min-height: 560px; border-right: 1px solid var(--line); background: var(--panel); }
-    .detail-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: saturate(.72) contrast(1.08); }
-    .detail-content { padding: clamp(35px,5vw,80px); align-self: center; }
-    .detail-content h2 { font-size: clamp(2.8rem,5vw,5.8rem); margin-bottom: 30px; }
-    .detail-content > p:not(.eyebrow) { color: #aab2b4; font-size: 1rem; line-height: 1.8; margin-bottom: 20px; }
-    .detail-features { margin: 30px 0; list-style: none; border-top: 1px solid var(--line); }
-    .detail-features li { padding: 14px 0; border-bottom: 1px solid var(--line); color: #b8c1c3; font: 10px var(--mono); letter-spacing: .06em; }
-    .detail-features li::before { content: "//"; color: var(--amber); margin-right: 12px; }
-    .detail-research-media { padding: 5vw; display: grid; place-items: center; background: radial-gradient(circle at 20% 10%,rgba(70,207,255,.17),transparent 30%),radial-gradient(circle at 85% 40%,rgba(180,80,255,.17),transparent 36%),#070c22; }
-    .supply-preview { position: relative; grid-column: 2; height: 220px; overflow: hidden; border-bottom: 1px solid var(--line); padding: 18px; background: #071421; }
-    .supply-shell { display: grid; grid-template-columns: 25% 1fr; height: 100%; border: 1px solid #264058; background: #091725; font: 7px var(--mono); color: #9bb0c3; }
-    .supply-side { padding: 14px 10px; border-right: 1px solid #21364a; background: #0a1c36; }
-    .safe-logo { width: 32px; height: 32px; margin: 0 auto 10px; border-radius: 8px; background: linear-gradient(135deg,#55738c,#1b324b); filter: blur(3px); }
-    .redacted-title { height: 7px; width: 68%; margin: 0 auto 18px; background: #8193a2; filter: blur(3px); }
-    .supply-nav-line { height: 7px; margin: 12px 2px; border-radius: 3px; background: #213b58; }
-    .supply-main { padding: 12px; }
-    .supply-user { display: flex; justify-content: flex-end; margin-bottom: 12px; }
-    .redacted-user { width: 90px; height: 8px; background: #718397; filter: blur(4px); }
-    .supply-banner { height: 42px; margin-bottom: 10px; border: 1px solid #78551c; border-radius: 4px; background: #56380f; opacity: .8; }
-    .supply-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
-    .supply-metrics span { height: 38px; border: 1px solid #27445c; border-radius: 3px; background: #11283a; }
-    .supply-table { height: 62px; margin-top: 10px; border: 1px solid #27445c; border-radius: 3px; background: repeating-linear-gradient(0deg,#102538 0 14px,#1a3144 15px); }
-    .detail-supply-media { padding: 5vw; display: grid; place-items: center; background: radial-gradient(circle at 70% 20%,rgba(31,122,190,.2),transparent 35%),#071421; }
-    .detail-supply-media .supply-shell { width: 100%; min-height: 380px; font-size: 10px; }
-    .detail-supply-media .safe-logo { width: 58px; height: 58px; }
-    .detail-supply-media .supply-banner { height: 82px; }
-    .detail-supply-media .supply-metrics span { height: 70px; }
-    .detail-supply-media .supply-table { height: 145px; }
-    .research-preview { position: relative; min-height: 480px; overflow: hidden; border-right: 1px solid var(--line); padding: 28px; background: radial-gradient(circle at 20% 10%,rgba(70,207,255,.16),transparent 30%),radial-gradient(circle at 85% 40%,rgba(180,80,255,.16),transparent 36%),#070c22; }
-    .research-preview::before { content: ""; position: absolute; inset: 0; opacity: .7; background-image: radial-gradient(circle,#9edbff 0 1px,transparent 1.5px); background-size: 73px 61px; }
-    .lab-window { position: relative; z-index: 1; height: 100%; min-height: 420px; border: 1px solid #284665; background: rgba(8,18,45,.86); box-shadow: 0 24px 70px rgba(0,0,0,.4); }
-    .lab-topbar { display: flex; align-items: center; gap: 10px; padding: 14px; border-bottom: 1px solid #284665; font: 600 10px var(--mono); }
-    .lab-logo { padding: 7px; border: 1px solid #47c7e8; border-radius: 5px; color: #5de9e1; }
-    .lab-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; padding: 12px; }
-    .lab-stats span { padding: 10px; border: 1px solid #2a3c66; border-radius: 5px; color: #9cafd4; font: 8px var(--mono); }
-    .lab-stats b { display: block; margin-top: 5px; color: #fff; font-size: 13px; }
-    .lab-tabs { display: flex; gap: 5px; padding: 0 12px 12px; }
-    .lab-tabs i { flex: 1; height: 20px; border: 1px solid #23365a; border-radius: 4px; background: #101a3a; }
-    .research-core { margin: 0 12px 12px; padding: 30px 12px; text-align: center; border: 1px solid #4aa4cb; border-radius: 5px; background: linear-gradient(110deg,rgba(67,220,255,.18),rgba(228,91,184,.23)); }
-    .research-core strong { display: block; font-size: clamp(1.3rem,2vw,2rem); }
-    .research-core small { color: #b6c3dd; font: 9px var(--mono); }
-    .lab-modules { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; padding: 0 12px; }
-    .lab-modules div { min-height: 105px; border: 1px solid #263b60; border-radius: 5px; padding: 12px; color: #dbe5fa; font: 600 9px var(--mono); background: rgba(17,30,65,.78); }
-    .project-status { width: max-content; padding: 11px 13px; border: 1px solid var(--cyan); color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .1em; }
-    /* Barcode Generator / Central Mind OS screenshots are full desktop
-       captures, not pre-cropped like the other projects' images — object-fit:
-       cover (the site-wide default) zooms in and crops most of the UI away.
-       contain shrinks the whole screenshot down to fit inside the frame instead. */
-    img.contain-shot { object-fit: contain !important; background: #05070a; }
-    @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
-    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
-    @media(max-width:768px){
-      html{scroll-padding-top:68px}
-      body{width:100%;overflow-x:hidden}
-      .navbar{height:68px;padding:0 18px;gap:12px}
-      .brand{gap:8px;font-size:10px;letter-spacing:.08em}
-      .brand-mark{width:34px;height:34px;flex:0 0 34px}
-      .navbar ul{margin-left:auto;gap:8px}
-      .navbar li a{display:flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:0 8px;border:1px solid transparent;font-size:0}
-      .navbar li a span{font-size:10px;margin:0}
-      .navbar li a.active{border-color:var(--line);background:var(--panel)}
-      main{padding-top:68px}
-      .hero{min-height:auto;grid-template-columns:1fr}
-      .hero-copy{min-height:auto;padding:64px 22px 40px}
-      .hero h1{font-size:clamp(3.25rem,16vw,5.6rem);line-height:.9}
-      .hero-intro{font-size:1rem;line-height:1.65;margin:28px 0}
-      .hero-actions{align-items:stretch;flex-direction:column;gap:10px}
-      .hero-actions .primary-btn,.hero-actions .text-link{width:100%;min-height:48px;justify-content:space-between}
-      .system-strip{grid-template-columns:1fr;margin-top:42px;gap:0;padding-top:0}
-      .system-strip div{padding:14px 12px;border-bottom:1px solid var(--line)}
-      .hero-visual{min-height:520px;padding:55px 0}
-      .photo-frame{width:min(68%,330px)}
-      .target-ring{width:92%}
-      .telemetry{min-width:126px;padding:11px}
-      .telemetry-a{left:3%;top:9%}
-      .telemetry-b{right:3%;bottom:8%}
-      .about-section{display:flex;flex-direction:column;min-height:auto}
-      .section-index{width:100%;padding:30px 22px;border-right:0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px}
-      .section-index span{font-size:2rem}.section-index p{margin-top:0}
-      .about-photo{width:100%;padding:48px 22px 28px;border-right:0}
-      .about-photo img{width:100%;max-height:480px}
-      .about-copy{width:100%;padding:34px 22px 60px}
-      .about-copy h2,.projects-heading h2{font-size:clamp(2.65rem,13vw,4.4rem);line-height:.92;margin-bottom:28px}
-      .about-copy>p:not(.eyebrow){font-size:.98rem;line-height:1.7}
-      .capability-grid{grid-template-columns:1fr;margin-top:24px}
-      .projects-section{padding:56px 18px}
-      .projects-heading{margin-bottom:34px}
-      .projects-grid{gap:18px}
-      .projects-grid .project-card:hover{transform:none}
-      .projects-grid .project-image img{object-position:top center}
-      .tech-list{gap:6px}.tech-list li{padding:7px 8px}
-      .detail-page{padding:34px 16px 55px;min-height:calc(100vh - 68px);background-size:28px 28px}
-      .detail-back{min-height:44px;margin-bottom:24px}
-      .detail-layout{display:flex;flex-direction:column}
-      .detail-media{width:100%;min-height:260px;height:260px}
-      .detail-research-media{height:auto;min-height:390px;padding:18px}
-      .detail-supply-media{height:auto;min-height:390px;padding:16px}
-      .detail-supply-media .supply-shell{min-height:350px;grid-template-columns:28% 1fr}
-      .detail-supply-media .supply-banner{height:65px}
-      .detail-supply-media .supply-metrics span{height:55px}
-      .detail-supply-media .supply-table{height:120px}
-      .detail-research-media .lab-window{width:100%}
-      .detail-content{padding:38px 22px 45px}
-      .detail-content h2{font-size:clamp(2.55rem,13vw,4.5rem);line-height:.92;margin-bottom:24px}
-      .detail-content>p:not(.eyebrow){font-size:.95rem;line-height:1.7}
-      .detail-features{margin:24px 0}.detail-features li{line-height:1.55;padding:13px 0}
-      .detail-content .primary-btn{width:100%;min-height:48px;justify-content:space-between}
-      footer{padding:24px 18px;gap:14px;align-items:flex-start;flex-direction:column}
-      footer a{display:flex;align-items:center;min-height:40px}
-      .glitch-transition span{font-size:8px;letter-spacing:.18em}
-    }
-    @media(max-width:420px){
-      .brand>span:last-child{display:none}
-      .hero h1{font-size:3.15rem}
-      .hero-visual{min-height:450px}
-      .photo-frame{width:72%}
-      .telemetry-b{bottom:5%}
-      .projects-grid .project-copy h3{font-size:1.65rem}
-      .research-core{padding:22px 8px}.research-core strong{font-size:1.15rem}
-      .lab-modules{grid-template-columns:1fr}.lab-modules div{min-height:62px}
-      .detail-research-media{min-height:350px}
-    }
-    @media(max-height:500px) and (orientation:landscape){
-      .hero{grid-template-columns:1fr 1fr}.hero-copy{padding:42px 24px}.hero-visual{min-height:calc(100vh - 68px)}
-      .hero h1{font-size:3rem}.hero-intro{margin:18px 0}.system-strip{display:none}
-    }
-  </style>
   <link rel="stylesheet" href="studio.css">
   <script src="studio.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="navbar" aria-label="Main navigation">
-    <a class="brand" href="#profile" data-view="profile"><span class="brand-mark">m<span>f</span>.</span><span>Mike Fernando<small>DEVELOPER & CURIOUS HUMAN</small></span></a>
+    <a class="brand" href="#profile" data-view="profile"><span class="brand-mark">m<span>f</span>.</span><span>Mike Fernando<small>AI-AUGMENTED SYSTEMS ENGINEER</small></span></a>
     <div class="nav-status"><i></i> BASED IN THE PHILIPPINES</div>
     <ul>
       <li><a class="tab-link active" href="#profile" data-view="profile">Profile</a></li>
@@ -231,106 +28,141 @@
     <section id="home" class="studio-hero" aria-labelledby="hero-title">
       <div class="hero-heading">
         <p class="eyebrow"><span class="little-star">✳</span> HUMAN INSIGHT. MACHINE PRECISION.</p>
-        <h1 id="hero-title">A little world of<br><em>working systems.</em><span class="title-spark" aria-hidden="true">✳</span></h1>
-        <p>I’m Mike — an AI-Augmented Full Stack Developer.<br>I turn curiosity into useful things. Come take a look around.</p>
+        <h1 id="hero-title">Human intelligence.<br><em>Beyond the horizon.</em><span class="title-spark" aria-hidden="true">✳</span></h1>
+        <p>I’m Mike — an AI-Augmented Full Stack Developer.<br>Engineering useful systems. Explore my orbital workspace.</p>
       </div>
       <div class="world" aria-label="Interactive map of Mike’s portfolio">
-        <div class="world-note"><span class="note-arrow" aria-hidden="true">⤵</span> Pick a place. Explore a little.</div>
+        <div class="world-note"><span class="note-arrow" aria-hidden="true">⤵</span> SELECT A MODULE TO DOCK</div>
         <svg class="world-art" viewBox="0 0 1100 510" role="group" aria-labelledby="world-title world-desc">
-          <title id="world-title">Mike’s creative neighborhood</title>
+          <title id="world-title">Mike’s orbital station</title>
           <desc id="world-desc">An illustrated neighborhood with a profile studio, a workshop for six projects, and a garden of capabilities. Use the labeled links below to explore.</desc>
           <defs>
-            <pattern id="ground-grid" width="36" height="22" patternUnits="userSpaceOnUse" patternTransform="skewX(-28)"><path d="M36 0H0V22" fill="none" stroke="#cdd9c7" stroke-width=".6"/></pattern>
-            <g id="tree"><path d="M0 -4V-46" stroke="#67664c" stroke-width="6"/><path d="M0 -29L-12 -41M0 -24L12 -34" stroke="#67664c" stroke-width="3"/><ellipse cy="-61" rx="25" ry="32" fill="#abc789"/><ellipse cx="-9" cy="-64" rx="17" ry="25" fill="#c7daaa"/><path d="M-8 -76Q-16 -66 -13 -56" fill="none" stroke="#e2eccf" stroke-width="3" stroke-linecap="round"/></g>
-            <g id="bush"><ellipse rx="23" ry="10" fill="#91b47d"/><circle cx="-12" cy="-9" r="12" fill="#b9ce97"/><circle cx="5" cy="-14" r="16" fill="#c5d8a4"/><circle cx="19" cy="-5" r="10" fill="#acc889"/></g>
-            <g id="flower"><path d="M0 0V-13" stroke="#7d9666" stroke-width="2"/><path d="M0 -4L-5 -8" stroke="#7d9666" stroke-width="2"/><circle cy="-15" r="5" fill="#e9af89"/><circle cy="-15" r="2" fill="#f9e7a1"/></g>
-            <g id="window"><path d="M0 0L29 -16V24L0 40Z" fill="#536778" stroke="#424f55" stroke-width="2"/><path d="M4 3L25 -9V7L4 19Z" fill="#b5d6d4"/><path d="M14 -5V30M0 21L29 5" stroke="#faf4e5" stroke-width="3"/></g>
+            <pattern id="ground-grid" width="36" height="22" patternUnits="userSpaceOnUse" patternTransform="skewX(-28)"><path d="M36 0H0V22" fill="none" stroke="#32647d" stroke-width=".6"/></pattern>
+            <g id="tree"><path d="M0 -4V-46" stroke="#32647d" stroke-width="6"/><path d="M0 -29L-12 -41M0 -24L12 -34" stroke="#32647d" stroke-width="3"/><ellipse cy="-61" rx="25" ry="32" fill="#286f68"/><ellipse cx="-9" cy="-64" rx="17" ry="25" fill="#4e9f87"/><path d="M-8 -76Q-16 -66 -13 -56" fill="none" stroke="#32647d" stroke-width="3" stroke-linecap="round"/></g>
+            <g id="bush"><ellipse rx="23" ry="10" fill="#286f68"/><circle cx="-12" cy="-9" r="12" fill="#4e9f87"/><circle cx="5" cy="-14" r="16" fill="#4e9f87"/><circle cx="19" cy="-5" r="10" fill="#4e9f87"/></g>
+            <g id="flower"><path d="M0 0V-13" stroke="#32647d" stroke-width="2"/><path d="M0 -4L-5 -8" stroke="#32647d" stroke-width="2"/><circle cy="-15" r="5" fill="#245772"/><circle cy="-15" r="2" fill="#101f35"/></g>
+            <g id="window"><path d="M0 0L29 -16V24L0 40Z" fill="#373b70" stroke="#32647d" stroke-width="2"/><path d="M4 3L25 -9V7L4 19Z" fill="#51537f"/><path d="M14 -5V30M0 21L29 5" stroke="#32647d" stroke-width="3"/></g>
           </defs>
-          <g class="cloud cloud-a" fill="#fff" stroke="#e5e6dd"><path d="M105 89c-19 0-19-22-3-25 0-23 34-26 39-4 22-9 32 27 10 29Z"/></g>
-          <g class="cloud cloud-b" fill="#fff" stroke="#e5e6dd"><path d="M883 62c-18 0-18-22-2-24 3-22 32-23 38-3 24-5 29 27 8 27Z"/></g>
-          <path d="M122 349L487 163Q529 141 565 157L1015 347Q1047 361 1015 380L671 496Q631 510 592 496L126 380Q94 367 122 349Z" fill="#dbe1d0"/>
-          <path d="M122 337L487 151Q529 129 565 145L1015 335Q1047 349 1015 368L671 484Q631 498 592 484L126 368Q94 355 122 337Z" fill="#e5eadb" stroke="#c4ceb9" stroke-width="2"/>
+          <g class="cloud cloud-a"><circle cx="130" cy="90" r="35" fill="#172f59" stroke="#4c80a9"/><ellipse cx="130" cy="90" rx="57" ry="11" fill="none" stroke="#5d8cd4" transform="rotate(-25 130 90)"/></g>
+          <g class="cloud cloud-b"><circle cx="928" cy="74" r="24" fill="#493c70"/><path d="M913 56Q937 50 947 76" fill="none" stroke="#b8a2ef" stroke-width="2"/></g>
+          <path d="M122 349L487 163Q529 141 565 157L1015 347Q1047 361 1015 380L671 496Q631 510 592 496L126 380Q94 367 122 349Z" fill="#101f35"/>
+          <path d="M122 337L487 151Q529 129 565 145L1015 335Q1047 349 1015 368L671 484Q631 498 592 484L126 368Q94 355 122 337Z" fill="#101f35" stroke="#32647d" stroke-width="2"/>
           <path d="M122 337L487 151Q529 129 565 145L1015 335Q1047 349 1015 368L671 484Q631 498 592 484L126 368Q94 355 122 337Z" fill="url(#ground-grid)"/>
-          <path d="M223 350L425 279L610 378L873 300" fill="none" stroke="#c7caba" stroke-width="31" stroke-linejoin="round"/>
-          <path d="M223 347L425 276L610 375L873 297" fill="none" stroke="#f9f7ed" stroke-width="25" stroke-linejoin="round"/>
-          <path d="M223 347L425 276L610 375L873 297" fill="none" stroke="#d6d4c5" stroke-width="1.4" stroke-dasharray="4 8"/>
-          <ellipse cx="338" cy="320" rx="112" ry="26" fill="#a9b79e" opacity=".22"/>
-          <ellipse cx="598" cy="285" rx="127" ry="30" fill="#a9b79e" opacity=".22"/>
-          <ellipse cx="845" cy="365" rx="99" ry="24" fill="#a9b79e" opacity=".22"/>
+          <path d="M223 350L425 279L610 378L873 300" fill="none" stroke="#32647d" stroke-width="31" stroke-linejoin="round"/>
+          <path d="M223 347L425 276L610 375L873 297" fill="none" stroke="#32647d" stroke-width="25" stroke-linejoin="round"/>
+          <path d="M223 347L425 276L610 375L873 297" fill="none" stroke="#32647d" stroke-width="1.4" stroke-dasharray="4 8"/>
+          <ellipse cx="338" cy="320" rx="112" ry="26" fill="#286f68" opacity=".22"/>
+          <ellipse cx="598" cy="285" rx="127" ry="30" fill="#286f68" opacity=".22"/>
+          <ellipse cx="845" cy="365" rx="99" ry="24" fill="#286f68" opacity=".22"/>
           <g class="scene-place" data-place="profile" data-destination="about" role="link" tabindex="0" aria-label="Open the studio door: meet Mike">
-            <path d="M231 209L330 250V337L231 295Z" fill="#e8bfa0" stroke="#8f806c" stroke-width="1.5"/>
-            <path d="M330 250L421 205V291L330 337Z" fill="#f5ddbd" stroke="#8f806c" stroke-width="1.5"/>
-            <path d="M219 210L310 151L344 199L330 259Z" fill="#cf8e70" stroke="#8f806c" stroke-width="1.5"/>
-            <path d="M310 151L405 109L434 207L330 259Z" fill="#e7aa89" stroke="#8f806c" stroke-width="1.5"/>
-            <path d="M325 157L407 122M332 179L413 141M337 202L419 165M335 226L425 189" stroke="#c78f74" stroke-width="2"/>
-            <path d="M369 126V87L390 77L403 84V117L389 124V96L381 100V132" fill="#ddbea1" stroke="#8f806c" stroke-width="1.5"/>
+            <path d="M231 209L330 250V337L231 295Z" fill="#245772" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M330 250L421 205V291L330 337Z" fill="#101f35" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M219 210L310 151L344 199L330 259Z" fill="#19394f" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M310 151L405 109L434 207L330 259Z" fill="#245772" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M325 157L407 122M332 179L413 141M337 202L419 165M335 226L425 189" stroke="#32647d" stroke-width="2"/>
+            <path d="M369 126V87L390 77L403 84V117L389 124V96L381 100V132" fill="#245772" stroke="#32647d" stroke-width="1.5"/>
             <use href="#window" x="345" y="262"/><use href="#window" x="385" y="242"/>
-            <path class="building-door" d="M257 249L291 264V319L257 305Z" fill="#69877a" stroke="#65725f" stroke-width="2"/><circle cx="282" cy="289" r="2" fill="#fff0cf"/>
-            <path d="M250 310L290 327L277 334L239 317Z" fill="#f1ddbf"/>
-            <path d="M243 315L277 329V337L243 323Z" fill="#d2bb9e"/>
-            <path d="M341 301L413 266V277L341 313Z" fill="#b88d6c"/>
+            <path class="building-door" d="M257 249L291 264V319L257 305Z" fill="#286f68" stroke="#32647d" stroke-width="2"/><circle cx="282" cy="289" r="2" fill="#101f35"/>
+            <path d="M250 310L290 327L277 334L239 317Z" fill="#101f35"/>
+            <path d="M243 315L277 329V337L243 323Z" fill="#19394f"/>
+            <path d="M341 301L413 266V277L341 313Z" fill="#19394f"/>
             <use href="#bush" transform="translate(381 288) scale(.65)"/>
-            <path d="M235 223L296 248V263L235 238Z" fill="#fff4db"/><text x="245" y="233" transform="rotate(23 245 233)" font-size="9" fill="#6d5b47" font-family="monospace">MIKE’S STUDIO</text>
+            <path d="M235 223L296 248V263L235 238Z" fill="#101f35"/><text x="245" y="233" transform="rotate(23 245 233)" font-size="9" fill="#8ef4ff" font-family="monospace">COMMAND DECK</text>
           </g>
           <use href="#tree" x="196" y="303"/><use href="#bush" x="209" y="321"/>
           <g class="scene-place" data-place="deployments" data-destination="deployments" role="link" tabindex="0" aria-label="Open the workshop door: explore projects">
-            <path d="M479 164L590 207V302L479 257Z" fill="#b8b5d0" stroke="#797788" stroke-width="1.5"/>
-            <path d="M590 207L699 155V251L590 302Z" fill="#d7d5e6" stroke="#797788" stroke-width="1.5"/>
-            <path d="M468 161L576 111L710 155L591 215Z" fill="#e8e5f0" stroke="#797788" stroke-width="1.5"/>
-            <path d="M485 158L577 120L693 156L590 203Z" fill="#c6c3db" stroke="#a39db9"/>
-            <path d="M513 142L572 117L629 137L570 164Z" fill="#8e9ea8" stroke="#757981"/><path d="M519 141L572 120L620 137L570 160Z" fill="#bfe0df"/><path d="M548 130L598 148M573 121L570 160" stroke="#edf6ed" stroke-width="2"/>
+            <path d="M479 164L590 207V302L479 257Z" fill="#373b70" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M590 207L699 155V251L590 302Z" fill="#51537f" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M468 161L576 111L710 155L591 215Z" fill="#51537f" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M485 158L577 120L693 156L590 203Z" fill="#51537f" stroke="#32647d"/>
+            <path d="M513 142L572 117L629 137L570 164Z" fill="#373b70" stroke="#32647d"/><path d="M519 141L572 120L620 137L570 160Z" fill="#51537f"/><path d="M548 130L598 148M573 121L570 160" stroke="#32647d" stroke-width="2"/>
             <use href="#window" x="610" y="222"/><use href="#window" x="655" y="200"/>
-            <path d="M495 203L559 229V270L495 244Z" fill="#475b65" stroke="#f2eee4" stroke-width="4"/>
-            <path d="M506 216L532 227M506 224L546 240M506 232L523 239" stroke="#b9d9bf" stroke-width="3"/>
-            <path d="M576 268L594 275V303L576 296Z" fill="#7d8395"/>
-            <path class="building-door" d="M610 259L641 245V278L610 293Z" fill="#8c8ba8"/><circle cx="618" cy="274" r="2" fill="#f9ecd5"/>
-            <path d="M565 98V54L650 84V127Z" fill="#f7f0db" stroke="#80778b" stroke-width="2"/>
-            <text x="576" y="75" transform="rotate(19 576 75)" font-size="12" font-weight="bold" fill="#79728c" font-family="monospace">THE WORKSHOP</text>
-            <text x="576" y="91" transform="rotate(19 576 91)" font-size="9" fill="#79728c" font-family="monospace">IDEAS → SYSTEMS</text>
-            <path d="M583 112V124M635 131V139" stroke="#80778b" stroke-width="3"/>
-            <path d="M682 249L714 263L697 272L665 258Z" fill="#e6ba86"/><path d="M682 259V278M704 267V284" stroke="#9d8361" stroke-width="3"/>
+            <path d="M495 203L559 229V270L495 244Z" fill="#373b70" stroke="#32647d" stroke-width="4"/>
+            <path d="M506 216L532 227M506 224L546 240M506 232L523 239" stroke="#32647d" stroke-width="3"/>
+            <path d="M576 268L594 275V303L576 296Z" fill="#373b70"/>
+            <path class="building-door" d="M610 259L641 245V278L610 293Z" fill="#373b70"/><circle cx="618" cy="274" r="2" fill="#101f35"/>
+            <path d="M565 98V54L650 84V127Z" fill="#101f35" stroke="#32647d" stroke-width="2"/>
+            <text x="576" y="75" transform="rotate(19 576 75)" font-size="12" font-weight="bold" fill="#8ef4ff" font-family="monospace">SYSTEMS HANGAR</text>
+            <text x="576" y="91" transform="rotate(19 576 91)" font-size="9" fill="#8ef4ff" font-family="monospace">IDEAS → SYSTEMS</text>
+            <path d="M583 112V124M635 131V139" stroke="#32647d" stroke-width="3"/>
+            <path d="M682 249L714 263L697 272L665 258Z" fill="#245772"/><path d="M682 259V278M704 267V284" stroke="#32647d" stroke-width="3"/>
           </g>
           <use href="#tree" x="731" y="255"/><use href="#tree" transform="translate(770 271) scale(.78)"/>
           <g class="scene-place" data-place="about" data-destination="capabilities" role="link" tabindex="0" aria-label="Open the greenhouse door: capabilities">
-            <path d="M759 315L843 278L929 316L844 359Z" fill="#c4d2b1" stroke="#99ab89" stroke-width="1.5"/>
-            <path d="M759 315V337L844 381V359Z" fill="#a9be94" stroke="#99ab89"/><path d="M844 359L929 316V338L844 381Z" fill="#b8cca3" stroke="#99ab89"/>
-            <path d="M785 310V245L843 218L900 247V310L843 339Z" fill="#e0eee1" fill-opacity=".85" stroke="#6c8d77" stroke-width="3"/>
-            <path d="M785 245L816 198L872 225L900 247M816 198L872 170L928 218L900 247M872 170V225" fill="#c9e0cf" fill-opacity=".8" stroke="#6c8d77" stroke-width="3"/>
-            <path d="M843 218V339M785 276L843 304L900 277M814 232V325M872 234V325M872 225L928 218V282L900 310" fill="none" stroke="#87a58b" stroke-width="2"/>
-            <path d="M817 315V293L840 303V328Z" fill="#c98f71"/><use href="#bush" transform="translate(829 294) scale(.63)"/>
-            <path d="M859 323V301L878 291V313Z" fill="#d3ad78"/><use href="#bush" transform="translate(871 298) scale(.5)"/>
-            <path class="building-door" d="M848 295L869 285V325L848 335Z" fill="#9bb8a2" stroke="#6c8d77" stroke-width="2"/><circle cx="853" cy="315" r="2" fill="#fff5d7"/><path d="M793 345L843 370L891 345" fill="none" stroke="#f1e7c9" stroke-width="6"/>
+            <path d="M759 315L843 278L929 316L844 359Z" fill="#4e9f87" stroke="#32647d" stroke-width="1.5"/>
+            <path d="M759 315V337L844 381V359Z" fill="#286f68" stroke="#32647d"/><path d="M844 359L929 316V338L844 381Z" fill="#4e9f87" stroke="#32647d"/>
+            <path d="M785 310V245L843 218L900 247V310L843 339Z" fill="#101f35" fill-opacity=".85" stroke="#32647d" stroke-width="3"/>
+            <path d="M785 245L816 198L872 225L900 247M816 198L872 170L928 218L900 247M872 170V225" fill="#4e9f87" fill-opacity=".8" stroke="#32647d" stroke-width="3"/>
+            <path d="M843 218V339M785 276L843 304L900 277M814 232V325M872 234V325M872 225L928 218V282L900 310" fill="none" stroke="#32647d" stroke-width="2"/>
+            <path d="M817 315V293L840 303V328Z" fill="#19394f"/><use href="#bush" transform="translate(829 294) scale(.63)"/>
+            <path d="M859 323V301L878 291V313Z" fill="#19394f"/><use href="#bush" transform="translate(871 298) scale(.5)"/>
+            <path class="building-door" d="M848 295L869 285V325L848 335Z" fill="#286f68" stroke="#32647d" stroke-width="2"/><circle cx="853" cy="315" r="2" fill="#101f35"/><path d="M793 345L843 370L891 345" fill="none" stroke="#32647d" stroke-width="6"/>
           </g>
           <use href="#tree" x="960" y="349"/><use href="#bush" x="941" y="373"/>
           <use href="#tree" transform="translate(438 389) scale(.83)"/><use href="#bush" x="422" y="406"/>
           <use href="#flower" x="258" y="364"/><use href="#flower" x="272" y="369"/><use href="#flower" x="742" y="387"/><use href="#flower" x="755" y="392"/><use href="#flower" x="910" y="385"/>
-          <g class="little-person"><ellipse cx="560" cy="356" rx="12" ry="5" fill="#b7bdac" opacity=".6"/><path d="M557 345L554 355M563 345L567 353" stroke="#5d6066" stroke-width="4" stroke-linecap="round"/><path d="M554 328Q560 323 566 328L569 344H551Z" fill="#df9c73"/><circle cx="560" cy="319" r="7" fill="#d9b291"/><path d="M553 318Q551 308 561 311Q570 312 567 318" fill="#5d5956"/></g>
-          <g fill="none" stroke="#8e9b85" stroke-width="1.8" stroke-linecap="round"><path d="M470 79q6-7 12 0q6-7 12 0M803 113q5-6 10 0q5-6 10 0"/></g>
-          <path d="M620 428L654 441L683 429L650 417Z" fill="#c8d2ba"/><text x="619" y="449" transform="rotate(18 619 449)" font-size="9" font-family="monospace" fill="#7c8970">BUILT WITH INTENT</text>
+          <g class="little-person"><ellipse cx="560" cy="356" rx="12" ry="5" fill="#101f35" opacity=".6"/><path d="M557 345L554 355M563 345L567 353" stroke="#32647d" stroke-width="4" stroke-linecap="round"/><path d="M554 328Q560 323 566 328L569 344H551Z" fill="#245772"/><circle cx="560" cy="319" r="7" fill="#19394f"/><path d="M553 318Q551 308 561 311Q570 312 567 318" fill="#1b3852"/></g>
+          <g fill="none" stroke="#32647d" stroke-width="1.8" stroke-linecap="round"><path d="M470 79q6-7 12 0q6-7 12 0M803 113q5-6 10 0q5-6 10 0"/></g>
+          <path d="M620 428L654 441L683 429L650 417Z" fill="#101f35"/><text x="619" y="449" transform="rotate(18 619 449)" font-size="9" font-family="monospace" fill="#8ef4ff">BUILT WITH INTENT</text>
         </svg>
-        <a class="map-link map-profile" href="#about" data-view="about" data-highlight="profile"><span class="map-icon">01</span><span>Meet the developer<small>PROFILE & BACKGROUND</small></span><span aria-hidden="true">↗</span></a>
-        <a class="map-link map-projects" href="#deployments" data-view="deployments" data-highlight="deployments"><span class="map-icon">02</span><span>Explore the workshop<small>6 REAL-WORLD DEPLOYMENTS</small></span><span aria-hidden="true">↗</span></a>
-        <a class="map-link map-about" href="#capabilities" data-view="capabilities" data-highlight="about"><span class="map-icon">03</span><span>See what’s growing<small>SKILLS & CAPABILITIES</small></span><span aria-hidden="true">↗</span></a>
+        <a class="map-link map-profile" href="#about" data-view="about" data-highlight="profile"><span class="map-icon">01</span><span>Command quarters<small>PROFILE & BACKGROUND</small></span><span aria-hidden="true">↗</span></a>
+        <a class="map-link map-projects" href="#deployments" data-view="deployments" data-highlight="deployments"><span class="map-icon">02</span><span>Deployment hangar<small>6 REAL-WORLD DEPLOYMENTS</small></span><span aria-hidden="true">↗</span></a>
+        <a class="map-link map-about" href="#capabilities" data-view="capabilities" data-highlight="about"><span class="map-icon">03</span><span>Enter the bio-dome<small>SKILLS & CAPABILITIES</small></span><span aria-hidden="true">↗</span></a>
       </div>
-      <div class="world-footer"><span><span class="status-dot"></span> BUILD / LEARN / ITERATE</span><a href="#about" data-view="about">A little more about me <span>↓</span></a><button class="motion-toggle" type="button" aria-pressed="false">Motion: on <span aria-hidden="true">◉</span></button></div>
+      <div class="world-footer"><span><span class="status-dot"></span> BUILD / LEARN / ITERATE</span><a href="#about" data-view="about">Access crew record <span>↓</span></a><button class="motion-toggle" type="button" aria-pressed="false">Motion: on <span aria-hidden="true">◉</span></button></div>
     </section>
     <section id="about" class="about-section">
       <div class="section-index"><span>01</span><p>THE HUMAN<br>BEHIND THE CODE</p></div>
       <div class="about-photo">
         <img loading="lazy" decoding="async" src="picture.jpg" alt="Mike Fernando">
-        <p>A LITTLE LESS CODE. A LITTLE MORE ME.</p>
+        <p>CREW RECORD / MIKE FERNANDO</p>
       </div>
       <div class="about-copy">
         <p class="eyebrow">BACKGROUND / CAPABILITIES</p>
         <h2>Engineering curiosity into <em>working systems.</em></h2>
         <p>I’m a Computer Engineering graduate from Holy Angel University and an AI-Augmented Full Stack Developer. I integrate AI across every stage of every web application I create—from research, architecture, and interface design to implementation, testing, debugging, and optimization—while keeping engineering judgment and user needs at the center.</p>
         <p>Outside the terminal, photography, music, and unfamiliar places keep my perspective calibrated.</p>
-        <div class="capability-grid" id="capabilities" tabindex="-1">
+        <div class="capability-grid" id="capability-summary" tabindex="-1">
           <span>01 / FULL-STACK</span><span>02 / DATABASES</span>
           <span>03 / AUTOMATION</span><span>04 / AI SYSTEMS</span>
         </div>
       </div>
     </section>
+    </div>
+
+
+    <div class="view garden-view" data-panel="capabilities" aria-hidden="true" hidden>
+      <section class="garden-room" aria-labelledby="garden-title">
+        <header class="room-header"><div><p class="eyebrow">ORBITAL STATION / MODULE 03</p><h2 id="garden-title">The bio-dome<span>.</span></h2><p>A living space for growing ideas. Select a cultivation pod to explore my capabilities.</p></div><a href="#profile" data-view="profile" class="room-exit">← Exit to orbit</a></header>
+        <div class="room-stage">
+          <svg class="garden-art" viewBox="0 0 1200 660" role="img" aria-labelledby="garden-art-title"><title id="garden-art-title">Inside an orbital garden room with glass walls, a ceiling, perspective floor, and four planted cultivation pods</title>
+            <defs>
+              <linearGradient id="room-floor" x2="0" y2="1"><stop stop-color="#132c31"/><stop offset="1" stop-color="#07131f"/></linearGradient>
+              <radialGradient id="planet-light"><stop stop-color="#496eb0"/><stop offset="1" stop-color="#111d42"/></radialGradient>
+              <g id="room-plant"><path d="M0 0Q-10-52 0-110M-2-40Q-45-70-43-95M-3-58Q28-70 39-105" fill="none" stroke="#6dcbb0" stroke-width="4"/><path d="M-3-52Q-70-40-53-105Q-16-108-3-52M-1-72Q11-137 47-120Q60-76-1-72M0-96Q-21-150 8-169Q37-140 0-96" fill="#2d846a" stroke="#7ce7bd" stroke-width="1.5"/><path d="M-2-48L-43-91M3-74L39-108M2-101L8-151" stroke="#79d4a0" fill="none"/><ellipse cy="8" rx="48" ry="13" fill="#162f3a" stroke="#59c5ba"/><path d="M-48 8L-36 50Q0 68 36 50L48 8Q0 30-48 8Z" fill="#152536" stroke="#447685"/><path d="M-35 43Q0 57 35 43" stroke="#68f1c3" stroke-width="3" fill="none"/></g>
+            </defs>
+            <path d="M0 0H1200V660H0Z" fill="#060e1b"/>
+            <circle cx="710" cy="211" r="133" fill="url(#planet-light)"/><path d="M585 190Q700 115 831 236M586 228Q720 163 825 264" fill="none" stroke="#567292" stroke-width="12" opacity=".26"/>
+            <g fill="#b8eaff"><circle cx="310" cy="178" r="2"/><circle cx="870" cy="142" r="2"/><circle cx="490" cy="110" r="1.5"/><circle cx="922" cy="276" r="1.5"/><circle cx="565" cy="278" r="1.5"/><circle cx="365" cy="310" r="1"/><circle cx="795" cy="99" r="1"/></g>
+            <path d="M0 0L244 106H956L1200 0Z" fill="#101e30" stroke="#345567"/><path d="M0 0L244 106V414L0 660Z" fill="#0c2430" fill-opacity=".8" stroke="#345567"/><path d="M1200 0L956 106V414L1200 660Z" fill="#102435" fill-opacity=".8" stroke="#345567"/>
+            <path d="M0 660L244 414H956L1200 660Z" fill="url(#room-floor)" stroke="#407383"/>
+            <g stroke="#29505d" fill="none"><path d="M244 106H956V414H244ZM422 106V414M600 106V414M778 106V414M244 260H956M120 55V538M1080 55V538M0 330L244 260M1200 330L956 260M300 0L422 106M600 0V106M900 0L778 106M244 414L0 660M422 414L300 660M600 414V660M778 414L900 660M956 414L1200 660M180 478H1020M97 560H1103"/></g>
+            <g stroke="#63eadc" stroke-width="3" fill="none"><path d="M33 24L252 121H948L1167 24M252 121V406M948 121V406M21 634L251 424H949L1179 634"/></g>
+            <path d="M400 57H800L775 72H425Z" fill="#84e6e4" opacity=".7"/>
+            <g opacity=".12" fill="#7fefd3"><path d="M435 74L240 425H570ZM765 74L630 425H960Z"/></g>
+            <ellipse cx="600" cy="549" rx="162" ry="45" fill="#122a35" stroke="#367487"/><ellipse cx="600" cy="540" rx="160" ry="44" fill="#0c1b2b" stroke="#75cbd2"/><path d="M536 540H664M600 521V559" stroke="#58aab7"/><text x="600" y="546" fill="#a6edf3" font-size="12" text-anchor="middle" font-family="monospace">CULTIVATE / ITERATE</text>
+            <use href="#room-plant" transform="translate(310 394) scale(.95)"/><use href="#room-plant" transform="translate(886 394) scale(.95)"/><use href="#room-plant" transform="translate(154 522) scale(1.3)"/><use href="#room-plant" transform="translate(1046 522) scale(1.3)"/>
+          </svg>
+          <div class="room-coordinate" aria-hidden="true">BIO-DOME / INTERIOR<br>DECK 03 · ORBITAL HABITAT</div>
+          <div class="pod-controls" role="group" aria-label="Explore capabilities">
+            <button class="pod pod-one" data-skill="fullstack" aria-pressed="true"><small>POD 01</small>Full-stack <span>↗</span></button>
+            <button class="pod pod-two" data-skill="databases" aria-pressed="false"><small>POD 02</small>Databases <span>↗</span></button>
+            <button class="pod pod-three" data-skill="automation" aria-pressed="false"><small>POD 03</small>Automation <span>↗</span></button>
+            <button class="pod pod-four" data-skill="ai" aria-pressed="false"><small>POD 04</small>AI systems <span>↗</span></button>
+          </div>
+        </div>
+        <div class="skill-readout" aria-live="polite" aria-atomic="true"><span class="readout-index">01 / CAPABILITY</span><div><h3 id="skill-title">Full-stack development</h3><p id="skill-description">Connecting interfaces, server logic, and practical workflows into complete applications.</p></div><a href="#deployments" data-view="deployments">See deployed systems ↗</a></div>
+      </section>
     </div>
 
     <div class="view deployments-view" data-panel="deployments" aria-hidden="true">
@@ -593,7 +425,7 @@
     </div>
   </main>
 
-  <footer><span>© 2026 MIKE FERNANDO</span><span>A LITTLE CURIOSITY. A LOT OF INTENT.</span><a href="#profile" data-view="profile">BACK TO THE NEIGHBORHOOD ↑</a></footer>
+  <footer><span>© 2026 MIKE FERNANDO</span><span>HUMAN INSIGHT / MACHINE PRECISION</span><a href="#profile" data-view="profile">RETURN TO ORBIT ↑</a></footer>
 
 </body>
 </html>

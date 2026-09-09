@@ -33,14 +33,14 @@
     return ['about', 'capabilities'].includes(requested) || panels.some(p => p.dataset.panel === requested) ? requested : 'profile';
   }
   function display(requested, focus = true) {
-    const section = ['about', 'capabilities'].includes(requested) ? requested : null;
+    const section = requested === 'about' ? requested : null;
     const view = section ? 'profile' : requested;
     panels.forEach(panel => {
       const active = panel.dataset.panel === view;
       panel.classList.toggle('active', active);panel.setAttribute('aria-hidden', String(!active));panel.hidden = !active;
     });
     tabs.forEach(tab => {
-      const active = section ? tab.dataset.view === 'about' : tab.dataset.view === view || (view.endsWith('-detail') && tab.dataset.view === 'deployments');
+      const active = section ? tab.dataset.view === 'about' : tab.dataset.view === view || (view === 'capabilities' && tab.dataset.view === 'about') || (view.endsWith('-detail') && tab.dataset.view === 'deployments');
       tab.classList.toggle('active', active);
       if (active) tab.setAttribute('aria-current', 'page');else tab.removeAttribute('aria-current');
     });
@@ -48,7 +48,7 @@
     const target = section ? document.getElementById(section) : panel.querySelector('h1,h2');
     if (focus && target) { target.setAttribute('tabindex', '-1');target.focus({ preventScroll: true }); }
     if (section) target.scrollIntoView({ behavior: 'instant', block: 'start' });else window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = 'Mike Fernando — ' + (section ? 'About & capabilities' : view === 'profile' ? 'A little world of working systems' : panel.querySelector('h2').textContent);
+    document.title = 'Mike Fernando — ' + (section ? 'About & capabilities' : view === 'profile' ? 'Orbital Systems Station' : panel.querySelector('h2').textContent);
     current = requested;return section ? document.querySelector('.about-section') : panel;
   }
   function play(element, frames, duration) {
@@ -74,7 +74,7 @@
     Object.assign(art.style, { width: width + 'px', height: height + 'px', left: left + 'px', top: y + 'px' });
     overlay.append(art);
     const caption = document.createElement('div');caption.className = 'journey-caption';
-    caption.textContent = destination === 'deployments' ? 'Opening the workshop…' : destination === 'capabilities' ? 'Opening the greenhouse…' : 'Come inside the studio…';
+    caption.textContent = destination === 'deployments' ? 'Docking at the deployment hangar…' : destination === 'capabilities' ? 'Entering the bio-dome…' : 'Accessing command quarters…';
     overlay.append(caption);document.body.append(overlay);
     const door = art.querySelector(`[data-place="${place}"] .building-door`);
     const box = door.getBoundingClientRect();
@@ -82,7 +82,7 @@
     const scale = Math.min(10, Math.max(5, (innerHeight - top) * .62 / box.height));
     const dx = innerWidth / 2 - left - x * scale, dy = (innerHeight - top) * .47 - y - doorY * scale;
     // The dark opening stays behind the hinged door leaf.
-    const doorway = door.cloneNode(true);doorway.classList.remove('building-door');doorway.setAttribute('fill', '#303d36');door.before(doorway);
+    const doorway = door.cloneNode(true);doorway.classList.remove('building-door');doorway.setAttribute('fill', '#020711');door.before(doorway);
     const handle = door.nextElementSibling;
     const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'g');leaf.classList.add('building-door');
     door.before(leaf);door.classList.remove('building-door');leaf.append(door);
@@ -109,7 +109,7 @@
         await play(overlay, [{ opacity: 1 }, { opacity: 0 }], 360);
       } else if (leaving) {
         display('profile');const { art, zoom } = camera(previous);
-        overlay.querySelector('.journey-caption').textContent = 'Back to the neighborhood';
+        overlay.querySelector('.journey-caption').textContent = 'Returning to orbit';
         await play(art, [{ transform: zoom }, { transform: 'translate(0,0) scale(1)' }], 760);
         if (ticket !== sequence) return;
         await play(overlay, [{ opacity: 1 }, { opacity: 0 }], 160);
@@ -150,5 +150,21 @@
     document.body.classList.toggle('page-hidden', document.hidden);
     if (document.hidden) navigate(location.hash.slice(1), false);
   });
+
+  const skills = {
+    fullstack: ['01', 'Full-stack development', 'Connecting interfaces, server logic, and practical workflows into complete applications.'],
+    databases: ['02', 'Databases', 'Structuring and managing the data behind reliable applications, from SQLite to PostgreSQL and Supabase.'],
+    automation: ['03', 'Automation', 'Turning repetitive operations into connected workflows, from inventory updates to document generation and reporting.'],
+    ai: ['04', 'AI systems', 'Integrating AI throughout research, architecture, interface design, implementation, testing, debugging, and optimization.']
+  };
+  document.querySelectorAll('[data-skill]').forEach(button => button.addEventListener('click', () => {
+    const [number, title, description] = skills[button.dataset.skill];
+    document.querySelectorAll('[data-skill]').forEach(pod => pod.setAttribute('aria-pressed', String(pod === button)));
+    document.querySelector('.readout-index').textContent = number + ' / CAPABILITY';
+    document.getElementById('skill-title').textContent = title;
+    document.getElementById('skill-description').textContent = description;
+    if (motionEnabled()) document.querySelector('.skill-readout').animate([{ opacity: .35, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220 });
+  }));
+
   window.addEventListener('resize', () => { if (document.body.classList.contains('is-travelling')) navigate(location.hash.slice(1), false); });
 })();
