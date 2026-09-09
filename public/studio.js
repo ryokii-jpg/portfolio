@@ -45,7 +45,7 @@
       if (active) tab.setAttribute('aria-current', 'page');else tab.removeAttribute('aria-current');
     });
     const panel = panels.find(p => p.dataset.panel === view);
-    const target = section ? document.getElementById(section) : panel.querySelector('h1,h2');
+    const target = section ? document.getElementById(section) : (view === 'deployments' && current.endsWith('-detail') ? panel.querySelector(`[data-view="${current}"]`) : panel.querySelector('h1,h2'));
     if (focus && target) { target.setAttribute('tabindex', '-1');target.focus({ preventScroll: true }); }
     if (section) target.scrollIntoView({ behavior: 'instant', block: 'start' });else window.scrollTo({ top: 0, behavior: 'instant' });
     document.title = 'Mike Fernando — ' + (section ? 'About & capabilities' : view === 'profile' ? 'Orbital Systems Station' : panel.querySelector('h2').textContent);
@@ -114,7 +114,7 @@
         if (ticket !== sequence) return;
         await play(overlay, [{ opacity: 1 }, { opacity: 0 }], 160);
       } else {
-        const outgoing = document.querySelector('.view.active'), rect = source ? source.getBoundingClientRect() : null;
+        const outgoing = document.querySelector('.view.active'), frame = source && source.closest('.project-card'), rect = (frame || source) ? (frame || source).getBoundingClientRect() : null;
         const panelRect = outgoing.getBoundingClientRect();
         const origin = rect ? `${rect.left + rect.width / 2 - panelRect.left}px ${rect.top + rect.height / 2 - panelRect.top}px` : `50% ${scrollY + innerHeight * .4}px`;
         await play(outgoing, [{ opacity: 1, transform: 'scale(1)', transformOrigin: origin }, { opacity: 0, transform: requested.endsWith('-detail') ? 'scale(1.16)' : 'scale(.92)', transformOrigin: origin }], 240);
@@ -150,6 +150,32 @@
     document.body.classList.toggle('page-hidden', document.hidden);
     if (document.hidden) navigate(location.hash.slice(1), false);
   });
+
+  // Native dialog provides focus containment and Escape-to-close for image inspection.
+  const viewer = document.querySelector('.image-viewer');
+  const viewerImage = viewer.querySelector('.viewer-image');
+  const zoomButton = viewer.querySelector('.viewer-zoom');
+  let imageTrigger = null;
+  document.querySelectorAll('.detail-media > img').forEach(image => {
+    const button = document.createElement('button');
+    button.type = 'button';button.className = 'inspect-image';button.textContent = 'View full image ↗';
+    button.addEventListener('click', () => {
+      imageTrigger = button;
+      viewerImage.src = image.src;viewerImage.alt = image.alt;
+      viewer.querySelector('#viewer-title').textContent = image.closest('[data-panel]').querySelector('h2').textContent;
+      viewer.classList.remove('is-zoomed');zoomButton.textContent = 'Zoom in';zoomButton.setAttribute('aria-pressed', 'false');
+      viewer.showModal();
+    });
+    image.parentElement.append(button);
+  });
+  zoomButton.addEventListener('click', () => {
+    const zoomed = viewer.classList.toggle('is-zoomed');
+    zoomButton.textContent = zoomed ? 'Fit image' : 'Zoom in';zoomButton.setAttribute('aria-pressed', String(zoomed));
+    viewer.querySelector('.viewer-canvas').scrollTo(0, 0);
+  });
+  viewer.querySelector('.viewer-close').addEventListener('click', () => viewer.close());
+  viewer.addEventListener('close', () => { if (imageTrigger) imageTrigger.focus({ preventScroll: true }); });
+  window.addEventListener('hashchange', () => { if (viewer.open) viewer.close(); });
 
   const skills = {
     fullstack: ['01', 'Full-stack development', 'Connecting interfaces, server logic, and practical workflows into complete applications.'],

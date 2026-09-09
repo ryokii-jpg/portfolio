@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="studio.css">
+  <link rel="stylesheet" href="hangar.css">
   <script src="studio.js" defer></script>
 </head>
 <body>
@@ -166,24 +167,23 @@
     </div>
 
     <div class="view deployments-view" data-panel="deployments" aria-hidden="true">
-    <section id="deployments" class="projects-section">
-      <div class="projects-heading">
-        <div><p class="eyebrow">SELECTED DEPLOYMENTS</p><h2>Systems built<br><em>for real users.</em></h2></div>
-        <p class="project-count">ARCHIVE<br><strong>006</strong> / 006</p>
-      </div>
-      <div class="projects-grid">
+    <section id="deployments" class="projects-section hangar-section">
+      <header class="room-header"><div><p class="eyebrow">ORBITAL STATION / MODULE 02</p><h2>The deployment hangar<span>.</span></h2><p>Six systems. Six exhibits. Select a frame to step inside the project.</p></div><a class="room-exit" href="#profile" data-view="profile">&larr; Exit to orbit</a></header>
+      <div class="hangar-gallery" aria-label="Project gallery room">
+        <div class="hangar-architecture" aria-hidden="true"><div class="hangar-ceiling"></div><div class="hangar-wall wall-left"></div><div class="hangar-wall wall-right"></div><div class="hangar-floor"></div><span class="hangar-sign">SYSTEMS ARCHIVE / 006</span></div>
+      <div class="projects-grid hangar-frames">
       <article class="project-card" data-project="zodiacs-detail">
         <div class="project-number">P-001</div>
-        <a class="project-image" href="https://app.zodiacsgaming.org" target="_blank" rel="noopener noreferrer">
+        <div class="project-image">
           <img loading="lazy" decoding="async" src="image2.png" alt="Zodiacs Portal interface">
           <span>LIVE SYSTEM ↗</span>
-        </a>
+        </div>
         <div class="project-copy">
           <p class="eyebrow">COMMUNITY PLATFORM / FULL-STACK</p>
           <h3>Zodiacs Portal</h3>
           <p>A real-time esports ecosystem for tournaments, guilds, recruitment, quests, commerce, and tiered moderation. Designed as one coherent operational platform rather than a collection of disconnected features.</p>
           <ul class="tech-list"><li>React</li><li>TypeScript</li><li>Supabase</li><li>Edge Functions</li><li>PostgreSQL</li></ul>
-          <a class="card-action" href="#zodiacs-detail" data-view="zodiacs-detail">Explore project <span aria-hidden="true">↗</span></a>
+          <a class="card-action" href="#zodiacs-detail" data-view="zodiacs-detail">View full exhibit <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       <article class="project-card" data-project="research-detail">
@@ -203,7 +203,7 @@
           <p>A galaxy-themed incremental game that grows a garage lab into a reality-bending science empire. Its layered economy moves through standard progression, Prestige via “Publish Findings,” and Ascension via “Rewrite Scientific Legacy,” with permanent multipliers and automation unfolding across each loop.</p>
           <p>Three dependency-driven skill trees, six currencies, scaling costs, random events, progressive automation, and tiered local saves form a self-contained demonstration of state management, balance design, and dynamic UI rendering—with no external libraries or build tooling.</p>
           <ul class="tech-list"><li>Vanilla JavaScript</li><li>HTML</li><li>CSS</li><li>localStorage</li><li>Zero Dependencies</li></ul>
-          <a class="card-action" href="#research-detail" data-view="research-detail">Explore project <span aria-hidden="true">↗</span></a>
+          <a class="card-action" href="#research-detail" data-view="research-detail">View full exhibit <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       <article class="project-card" data-project="supply-detail">
@@ -219,7 +219,7 @@
           <h3>Supply Request &amp; Inventory System</h3>
           <p>A secure internal platform that replaces paper-based supply requests with one clear digital workflow—from requesting and approval to stock issuance, procurement, and reporting.</p>
           <ul class="tech-list"><li>Node.js</li><li>Express</li><li>EJS</li><li>SQLite</li><li>ExcelJS</li></ul>
-          <a class="card-action" href="#supply-detail" data-view="supply-detail">Explore project <span aria-hidden="true">↗</span></a>
+          <a class="card-action" href="#supply-detail" data-view="supply-detail">View full exhibit <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       <article class="project-card" data-project="charms-detail">
@@ -233,21 +233,21 @@
           <h3>CHARMS</h3>
           <p>A full-stack custodian and resource asset management system that tracks PPE and semi-expendable items from acquisition through issuance, transfer, return, and disposal.</p>
           <ul class="tech-list"><li>Node.js</li><li>Express</li><li>SQLite</li><li>EJS</li><li>Bootstrap</li></ul>
-          <a class="card-action" href="#charms-detail" data-view="charms-detail">Explore project <span aria-hidden="true">↗</span></a>
+          <a class="card-action" href="#charms-detail" data-view="charms-detail">View full exhibit <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       <article class="project-card" data-project="barcode-detail">
         <div class="project-number">P-005</div>
-        <a class="project-image" href="https://barcode-generator-system.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <div class="project-image">
           <img loading="lazy" decoding="async" class="contain-shot" src="barcode-preview.png" alt="Barcode Generator tool interface">
           <span>LIVE SYSTEM ↗</span>
-        </a>
+        </div>
         <div class="project-copy">
           <p class="eyebrow">UTILITY TOOL / CLIENT-SIDE</p>
           <h3>Barcode Generator</h3>
           <p>A single-purpose tool that turns any serial number or asset code into a scanner-ready Code 128 barcode, exportable as a high-resolution PNG. Built to pair with CHARMS' asset-tagging workflow, but usable on its own for any labeling need.</p>
           <ul class="tech-list"><li>JavaScript</li><li>Canvas API</li><li>Code 128</li><li>PNG Export</li></ul>
-          <a class="card-action" href="#barcode-detail" data-view="barcode-detail">Explore project <span aria-hidden="true">↗</span></a>
+          <a class="card-action" href="#barcode-detail" data-view="barcode-detail">View full exhibit <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       <article class="project-card" data-project="mind-detail">
@@ -261,16 +261,17 @@
           <h3>Central Mind OS</h3>
           <p>A fully offline, single-file personal productivity system combining a mind map, task manager, project tracker, and notes app in one dark-themed, glassmorphic interface with real-time 3D visuals and optional cross-device cloud sync.</p>
           <ul class="tech-list"><li>Vanilla JavaScript</li><li>Three.js</li><li>Firebase Firestore</li><li>localStorage</li></ul>
-          <a class="card-action" href="#mind-detail" data-view="mind-detail">Explore project <span aria-hidden="true">↗</span></a>
+          <a class="card-action" href="#mind-detail" data-view="mind-detail">View full exhibit <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       </div>
+      <p class="hangar-guide"><span>GALLERY DECK / 02</span><span>Select any frame &middot; Explore the full project &middot; Return to the room</span></p></div>
     </section>
     </div>
 
     <div class="view" data-panel="zodiacs-detail" aria-hidden="true">
       <section class="detail-page">
-        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO HANGAR GALLERY</a>
         <div class="detail-layout">
           <div class="detail-media"><img loading="lazy" decoding="async" src="image2.png" alt="Zodiacs Portal application interface"></div>
           <div class="detail-content">
@@ -292,7 +293,7 @@
 
     <div class="view" data-panel="research-detail" aria-hidden="true">
       <section class="detail-page">
-        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO HANGAR GALLERY</a>
         <div class="detail-layout">
           <div class="detail-media detail-research-media">
             <div class="lab-window">
@@ -323,7 +324,7 @@
 
     <div class="view" data-panel="supply-detail" aria-hidden="true">
       <section class="detail-page">
-        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO HANGAR GALLERY</a>
         <div class="detail-layout">
           <div class="detail-media detail-supply-media">
             <div class="supply-shell" role="img" aria-label="Privacy-redacted supply and inventory dashboard">
@@ -353,7 +354,7 @@
 
     <div class="view" data-panel="charms-detail" aria-hidden="true">
       <section class="detail-page">
-        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO HANGAR GALLERY</a>
         <div class="detail-layout">
           <div class="detail-media"><img loading="lazy" decoding="async" src="charms-redacted.png" alt="Privacy-redacted CHARMS asset management dashboard"></div>
           <div class="detail-content">
@@ -378,7 +379,7 @@
 
     <div class="view" data-panel="barcode-detail" aria-hidden="true">
       <section class="detail-page">
-        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO HANGAR GALLERY</a>
         <div class="detail-layout">
           <div class="detail-media"><img loading="lazy" decoding="async" class="contain-shot" src="barcode-preview.png" alt="Barcode Generator tool interface"></div>
           <div class="detail-content">
@@ -400,7 +401,7 @@
 
     <div class="view" data-panel="mind-detail" aria-hidden="true">
       <section class="detail-page">
-        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO HANGAR GALLERY</a>
         <div class="detail-layout">
           <div class="detail-media"><img loading="lazy" decoding="async" class="contain-shot" src="central-mind-preview.png" alt="Central Mind OS mind-map hub interface"></div>
           <div class="detail-content">
@@ -425,6 +426,10 @@
     </div>
   </main>
 
+  <dialog class="image-viewer" aria-labelledby="viewer-title">
+    <div class="viewer-toolbar"><h2 id="viewer-title">Project image</h2><div><button type="button" class="viewer-zoom" aria-pressed="false">Zoom in</button><button type="button" class="viewer-close" autofocus>Close &times;</button></div></div>
+    <div class="viewer-canvas"><img class="viewer-image" alt=""></div>
+  </dialog>
   <footer><span>© 2026 MIKE FERNANDO</span><span>HUMAN INSIGHT / MACHINE PRECISION</span><a href="#profile" data-view="profile">RETURN TO ORBIT ↑</a></footer>
 
 </body>
