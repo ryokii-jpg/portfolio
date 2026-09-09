@@ -129,6 +129,11 @@
     .lab-modules { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; padding: 0 12px; }
     .lab-modules div { min-height: 105px; border: 1px solid #263b60; border-radius: 5px; padding: 12px; color: #dbe5fa; font: 600 9px var(--mono); background: rgba(17,30,65,.78); }
     .project-status { width: max-content; padding: 11px 13px; border: 1px solid var(--cyan); color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .1em; }
+    /* Barcode Generator / Central Mind OS screenshots are full desktop
+       captures, not pre-cropped like the other projects' images — object-fit:
+       cover (the site-wide default) zooms in and crops most of the UI away.
+       contain shrinks the whole screenshot down to fit inside the frame instead. */
+    img.contain-shot { object-fit: contain !important; background: #05070a; }
     @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
     @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
     @media(max-width:768px){
@@ -352,7 +357,7 @@
       <article class="project-card" data-view="barcode-detail" role="link" tabindex="0" aria-label="View Barcode Generator project details">
         <div class="project-number">P-005</div>
         <a class="project-image" href="https://barcode-generator-system.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <img src="barcode-preview.png" alt="Barcode Generator tool interface">
+          <img class="contain-shot" src="barcode-preview.png" alt="Barcode Generator tool interface">
           <span>LIVE SYSTEM ↗</span>
         </a>
         <div class="project-copy">
@@ -366,7 +371,7 @@
       <article class="project-card" data-view="mind-detail" role="link" tabindex="0" aria-label="View Central Mind OS project details">
         <div class="project-number">P-006</div>
         <div class="project-image">
-          <img src="central-mind-preview.png" alt="Central Mind OS mind-map hub interface">
+          <img class="contain-shot" src="central-mind-preview.png" alt="Central Mind OS mind-map hub interface">
           <span>NOT LIVE</span>
         </div>
         <div class="project-copy">
@@ -493,7 +498,7 @@
       <section class="detail-page">
         <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
         <div class="detail-layout">
-          <div class="detail-media"><img src="barcode-preview.png" alt="Barcode Generator tool interface"></div>
+          <div class="detail-media"><img class="contain-shot" src="barcode-preview.png" alt="Barcode Generator tool interface"></div>
           <div class="detail-content">
             <p class="eyebrow">PROJECT DOSSIER / P-005</p>
             <h2>Barcode<br><em>Generator.</em></h2>
@@ -515,7 +520,7 @@
       <section class="detail-page">
         <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
         <div class="detail-layout">
-          <div class="detail-media"><img src="central-mind-preview.png" alt="Central Mind OS mind-map hub interface"></div>
+          <div class="detail-media"><img class="contain-shot" src="central-mind-preview.png" alt="Central Mind OS mind-map hub interface"></div>
           <div class="detail-content">
             <p class="eyebrow">PROJECT DOSSIER / P-006</p>
             <h2>Central Mind<br><em>OS.</em></h2>
