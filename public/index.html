@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="studio.css">
   <link rel="stylesheet" href="hangar.css">
+  <link rel="stylesheet" href="command.css">
   <script src="studio.js" defer></script>
 </head>
 <body>
@@ -112,15 +113,23 @@
       </div>
       <div class="world-footer"><span><span class="status-dot"></span> BUILD / LEARN / ITERATE</span><a href="#about" data-view="about">Access crew record <span>↓</span></a><button class="motion-toggle" type="button" aria-pressed="false">Motion: on <span aria-hidden="true">◉</span></button></div>
     </section>
-    <section id="about" class="about-section">
-      <div class="section-index"><span>01</span><p>THE HUMAN<br>BEHIND THE CODE</p></div>
-      <div class="about-photo">
-        <img loading="lazy" decoding="async" src="picture.jpg" alt="Mike Fernando">
+
+    </div>
+
+
+    <div class="view command-view" data-panel="about" aria-hidden="true" hidden>
+    <section class="command-room" aria-labelledby="command-title">
+<header class="room-header"><div><p class="eyebrow">ORBITAL STATION / MODULE 01</p><h2 id="command-title">Command quarters<span>.</span></h2><p>Step inside the workspace. Meet the human behind the systems.</p></div><a class="room-exit" href="#profile" data-view="profile">&larr; Exit to orbit</a></header>
+<div class="command-interior"><div class="command-shell" aria-hidden="true"><div class="command-roof"></div><div class="command-left-wall"></div><div class="command-right-wall"></div><div class="command-deck"></div><div class="command-porthole"><span></span></div><span class="command-sign">CREW QUARTERS / MF-01</span></div>
+<div class="command-stations">
+
+      <div class="about-photo command-photo"><span class="crew-label">PERSONAL ARCHIVE / 01</span>
+        <img loading="lazy" decoding="async" src="picture.jpg" alt="City skyline from Mike Fernando's personal archive">
         <p>CREW RECORD / MIKE FERNANDO</p>
       </div>
-      <div class="about-copy">
+      <div class="about-copy command-console">
         <p class="eyebrow">BACKGROUND / CAPABILITIES</p>
-        <h2>Engineering curiosity into <em>working systems.</em></h2>
+        <h3>Engineering curiosity into <em>working systems.</em></h3>
         <p>I’m a Computer Engineering graduate from Holy Angel University and an AI-Augmented Full Stack Developer. I integrate AI across every stage of every web application I create—from research, architecture, and interface design to implementation, testing, debugging, and optimization—while keeping engineering judgment and user needs at the center.</p>
         <p>Outside the terminal, photography, music, and unfamiliar places keep my perspective calibrated.</p>
         <div class="capability-grid" id="capability-summary" tabindex="-1">
@@ -128,10 +137,9 @@
           <span>03 / AUTOMATION</span><span>04 / AI SYSTEMS</span>
         </div>
       </div>
+</div><nav class="command-desk" aria-label="Explore station rooms"><span>CONTINUE EXPLORING</span><a href="#capabilities" data-view="capabilities">Capabilities / Bio-dome &nearr;</a><a href="#deployments" data-view="deployments">Projects / Hangar &nearr;</a></nav></div>
     </section>
-    </div>
-
-
+</div>
     <div class="view garden-view" data-panel="capabilities" aria-hidden="true" hidden>
       <section class="garden-room" aria-labelledby="garden-title">
         <header class="room-header"><div><p class="eyebrow">ORBITAL STATION / MODULE 03</p><h2 id="garden-title">The bio-dome<span>.</span></h2><p>A living space for growing ideas. Select a cultivation pod to explore my capabilities.</p></div><a href="#profile" data-view="profile" class="room-exit">← Exit to orbit</a></header>

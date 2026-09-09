@@ -33,23 +33,22 @@
     return ['about', 'capabilities'].includes(requested) || panels.some(p => p.dataset.panel === requested) ? requested : 'profile';
   }
   function display(requested, focus = true) {
-    const section = requested === 'about' ? requested : null;
-    const view = section ? 'profile' : requested;
+    const view = requested;
     panels.forEach(panel => {
       const active = panel.dataset.panel === view;
       panel.classList.toggle('active', active);panel.setAttribute('aria-hidden', String(!active));panel.hidden = !active;
     });
     tabs.forEach(tab => {
-      const active = section ? tab.dataset.view === 'about' : tab.dataset.view === view || (view === 'capabilities' && tab.dataset.view === 'about') || (view.endsWith('-detail') && tab.dataset.view === 'deployments');
+      const active = tab.dataset.view === view || (view === 'capabilities' && tab.dataset.view === 'about') || (view.endsWith('-detail') && tab.dataset.view === 'deployments');
       tab.classList.toggle('active', active);
       if (active) tab.setAttribute('aria-current', 'page');else tab.removeAttribute('aria-current');
     });
     const panel = panels.find(p => p.dataset.panel === view);
-    const target = section ? document.getElementById(section) : (view === 'deployments' && current.endsWith('-detail') ? panel.querySelector(`[data-view="${current}"]`) : panel.querySelector('h1,h2'));
+    const target = view === 'deployments' && current.endsWith('-detail') ? panel.querySelector(`[data-view="${current}"]`) : panel.querySelector('h1,h2');
     if (focus && target) { target.setAttribute('tabindex', '-1');target.focus({ preventScroll: true }); }
-    if (section) target.scrollIntoView({ behavior: 'instant', block: 'start' });else window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = 'Mike Fernando — ' + (section ? 'About & capabilities' : view === 'profile' ? 'Orbital Systems Station' : panel.querySelector('h2').textContent);
-    current = requested;return section ? document.querySelector('.about-section') : panel;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.title = 'Mike Fernando — ' + (view === 'profile' ? 'Orbital Systems Station' : panel.querySelector('h2').textContent);
+    current = requested;return panel;
   }
   function play(element, frames, duration) {
     const animation = element.animate(frames, { duration, easing: 'cubic-bezier(.22,.7,.2,1)', fill: 'both' });
