@@ -130,6 +130,7 @@
   document.addEventListener('click', event => {
     const link = event.target.closest('a[data-view], [data-destination]');
     if (!link || link.closest('.journey') || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.classList.contains('projection-open')) { event.preventDefault(); openExhibit(document.querySelector(`[data-exhibit="${link.dataset.view}"]`)); return; }
     event.preventDefault();go(link.dataset.view || link.dataset.destination, link);
   });
   document.querySelectorAll('[data-destination]').forEach(place => place.addEventListener('keydown', event => {
@@ -168,7 +169,34 @@
       { transform: 'translateX(0)', opacity: 1 }
     ], { duration: 300, easing: 'steps(2, end)' });
   }
-  exhibitButtons.forEach(button => button.addEventListener('click', () => projectExhibit(button)));
+  const exhibitDialog = document.createElement('dialog');
+  exhibitDialog.className = 'exhibit-dialog';
+  exhibitDialog.setAttribute('aria-labelledby', 'exhibit-dialog-title');
+  exhibitDialog.innerHTML = '<header class="exhibit-toolbar"><div><small>HOLOGRAPHIC EXHIBIT / SYSTEM ARCHIVE</small><h2 id="exhibit-dialog-title"></h2></div><button type="button" class="exhibit-close" autofocus>Close projection ×</button></header><div class="exhibit-body"></div>';
+  document.body.append(exhibitDialog);
+  let exhibitOrigin = null, exhibitLayout = null, exhibitPlaceholder = null;
+  function openExhibit(button) {
+    if (!button || exhibitDialog.open) return;
+    projectExhibit(button);
+    exhibitOrigin = button;
+    const panel = panels.find(item => item.dataset.panel === button.dataset.exhibit);
+    exhibitLayout = panel.querySelector('.detail-layout');
+    exhibitPlaceholder = document.createComment('Exhibit returns here when its projection closes.');
+    exhibitLayout.before(exhibitPlaceholder);
+    document.getElementById('exhibit-dialog-title').textContent = button.closest('.project-card').querySelector('h3').textContent;
+    exhibitDialog.querySelector('.exhibit-body').append(exhibitLayout);
+    exhibitDialog.showModal();
+    exhibitDialog.scrollTop = 0;
+    if (motionEnabled()) exhibitDialog.animate([{ opacity: 0, transform: 'translateY(24px) scale(.84)' }, { opacity: .8, transform: 'translateX(2px) scale(.97)', offset: .6 }, { opacity: 1, transform: 'translate(0) scale(1)' }], { duration: 340, easing: 'ease-out' });
+  }
+  exhibitDialog.querySelector('.exhibit-close').addEventListener('click', () => exhibitDialog.close());
+  exhibitDialog.addEventListener('close', () => {
+    if (exhibitPlaceholder) exhibitPlaceholder.replaceWith(exhibitLayout);
+    exhibitPlaceholder = null;exhibitLayout = null;
+    if (exhibitOrigin) exhibitOrigin.focus({ preventScroll: true });
+  });
+  window.addEventListener('hashchange', () => { if (exhibitDialog.open) exhibitDialog.close(); });
+  exhibitButtons.forEach(button => button.addEventListener('click', () => openExhibit(button)));
   if (exhibitButtons.length) projectExhibit(exhibitButtons[0], false);
 
   // Native dialog provides focus containment and Escape-to-close for image inspection.
@@ -177,12 +205,13 @@
   const zoomButton = viewer.querySelector('.viewer-zoom');
   let imageTrigger = null;
   document.querySelectorAll('.detail-media > img, .command-photo > img').forEach(image => {
+    const imageTitle = image.closest('[data-panel]').querySelector('h2').textContent;
     const button = document.createElement('button');
     button.type = 'button';button.className = 'inspect-image';button.textContent = 'View full image ↗';
     button.addEventListener('click', () => {
       imageTrigger = button;
       viewerImage.src = image.src;viewerImage.alt = image.alt;
-      viewer.querySelector('#viewer-title').textContent = image.closest('[data-panel]').querySelector('h2').textContent;
+      viewer.querySelector('#viewer-title').textContent = imageTitle;
       viewer.classList.remove('is-zoomed');zoomButton.textContent = 'Zoom in';zoomButton.setAttribute('aria-pressed', 'false');
       viewer.showModal();
     });
