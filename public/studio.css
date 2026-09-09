@@ -8,3 +8,12 @@ html{scroll-padding-top:104px;scroll-behavior:auto}body{background:var(--ink);co
 @media(max-width:380px){.brand>span:last-child{display:none}.navbar li a{padding:10px 12px}.title-spark{display:none}.hero-heading h1{font-size:2.65rem}.hero-heading>p:last-child br{display:none}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .hero-heading .eyebrow .little-star{border:0;padding:0}.lab-window{color:#e1e9fa}.lab-topbar{color:#dce7ff}.research-core strong{color:#eef5ff}.motion-paused .view.active{animation:none}
+
+/* Navigation camera: one temporary SVG layer, no continuous render loop. */
+.view.active{animation:none}.scene-place[role="link"]{cursor:pointer;outline:none}.scene-place[role="link"]:focus-visible{filter:drop-shadow(0 0 3px #526e55)}.scene-place[role="link"]:hover,.scene-place[role="link"]:focus-visible{transform:translateY(-5px)}
+.building-door{transform-box:fill-box;transform-origin:left center}
+.journey{position:fixed;inset:90px 0 0;z-index:9;overflow:hidden;background:#f6f5ef;pointer-events:none;contain:layout paint}.journey-art{position:absolute;max-width:none;overflow:visible;transform-origin:0 0;will-change:transform;pointer-events:none}.journey .cloud{animation:none!important}.journey .scene-place{transform:none!important;transition:none!important}.journey-caption{position:absolute;left:50%;bottom:35px;transform:translateX(-50%);padding:12px 20px;border-radius:30px;background:#fffef9;color:#52634a;border:1px solid #d7dccd;font:11px var(--mono);white-space:nowrap}body.is-travelling main{pointer-events:none}body.is-travelling{overflow-x:clip}
+.studio-hero{padding-top:30px}.hero-heading h1{font-size:clamp(3.2rem,5vw,5.3rem)}.hero-heading>p:last-child{margin-top:16px}.hero-heading .eyebrow{margin-bottom:16px}.world{max-width:min(1100px,calc((100svh - 340px)*2.15));margin-top:0}
+@media(min-width:1500px){.studio-hero{padding-top:30px}.hero-heading h1{font-size:5.3rem}.world{max-width:min(1180px,calc((100svh - 355px)*2.15))}}
+@media(max-width:1000px){.world{max-width:1000px}.hero-heading h1{font-size:4rem}}
+@media(max-width:700px){.journey{top:76px}.journey-caption{bottom:22px;font-size:9px}.studio-hero{padding-top:30px}.hero-heading h1{font-size:clamp(2.7rem,8.5vw,4.3rem)}.world{max-width:500px;margin-top:5px}}

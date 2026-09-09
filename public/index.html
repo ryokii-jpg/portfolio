@@ -236,7 +236,7 @@
       </div>
       <div class="world" aria-label="Interactive map of Mike’s portfolio">
         <div class="world-note"><span class="note-arrow" aria-hidden="true">⤵</span> Pick a place. Explore a little.</div>
-        <svg class="world-art" viewBox="0 0 1100 510" role="img" aria-labelledby="world-title world-desc">
+        <svg class="world-art" viewBox="0 0 1100 510" role="group" aria-labelledby="world-title world-desc">
           <title id="world-title">Mike’s creative neighborhood</title>
           <desc id="world-desc">An illustrated neighborhood with a profile studio, a workshop for six projects, and a garden of capabilities. Use the labeled links below to explore.</desc>
           <defs>
@@ -257,7 +257,7 @@
           <ellipse cx="338" cy="320" rx="112" ry="26" fill="#a9b79e" opacity=".22"/>
           <ellipse cx="598" cy="285" rx="127" ry="30" fill="#a9b79e" opacity=".22"/>
           <ellipse cx="845" cy="365" rx="99" ry="24" fill="#a9b79e" opacity=".22"/>
-          <g class="scene-place" data-place="profile">
+          <g class="scene-place" data-place="profile" data-destination="about" role="link" tabindex="0" aria-label="Open the studio door: meet Mike">
             <path d="M231 209L330 250V337L231 295Z" fill="#e8bfa0" stroke="#8f806c" stroke-width="1.5"/>
             <path d="M330 250L421 205V291L330 337Z" fill="#f5ddbd" stroke="#8f806c" stroke-width="1.5"/>
             <path d="M219 210L310 151L344 199L330 259Z" fill="#cf8e70" stroke="#8f806c" stroke-width="1.5"/>
@@ -265,7 +265,7 @@
             <path d="M325 157L407 122M332 179L413 141M337 202L419 165M335 226L425 189" stroke="#c78f74" stroke-width="2"/>
             <path d="M369 126V87L390 77L403 84V117L389 124V96L381 100V132" fill="#ddbea1" stroke="#8f806c" stroke-width="1.5"/>
             <use href="#window" x="345" y="262"/><use href="#window" x="385" y="242"/>
-            <path d="M257 249L291 264V319L257 305Z" fill="#69877a" stroke="#65725f" stroke-width="2"/><circle cx="282" cy="289" r="2" fill="#fff0cf"/>
+            <path class="building-door" d="M257 249L291 264V319L257 305Z" fill="#69877a" stroke="#65725f" stroke-width="2"/><circle cx="282" cy="289" r="2" fill="#fff0cf"/>
             <path d="M250 310L290 327L277 334L239 317Z" fill="#f1ddbf"/>
             <path d="M243 315L277 329V337L243 323Z" fill="#d2bb9e"/>
             <path d="M341 301L413 266V277L341 313Z" fill="#b88d6c"/>
@@ -273,7 +273,7 @@
             <path d="M235 223L296 248V263L235 238Z" fill="#fff4db"/><text x="245" y="233" transform="rotate(23 245 233)" font-size="9" fill="#6d5b47" font-family="monospace">MIKE’S STUDIO</text>
           </g>
           <use href="#tree" x="196" y="303"/><use href="#bush" x="209" y="321"/>
-          <g class="scene-place" data-place="deployments">
+          <g class="scene-place" data-place="deployments" data-destination="deployments" role="link" tabindex="0" aria-label="Open the workshop door: explore projects">
             <path d="M479 164L590 207V302L479 257Z" fill="#b8b5d0" stroke="#797788" stroke-width="1.5"/>
             <path d="M590 207L699 155V251L590 302Z" fill="#d7d5e6" stroke="#797788" stroke-width="1.5"/>
             <path d="M468 161L576 111L710 155L591 215Z" fill="#e8e5f0" stroke="#797788" stroke-width="1.5"/>
@@ -283,7 +283,7 @@
             <path d="M495 203L559 229V270L495 244Z" fill="#475b65" stroke="#f2eee4" stroke-width="4"/>
             <path d="M506 216L532 227M506 224L546 240M506 232L523 239" stroke="#b9d9bf" stroke-width="3"/>
             <path d="M576 268L594 275V303L576 296Z" fill="#7d8395"/>
-            <path d="M610 259L641 245V278L610 293Z" fill="#8c8ba8"/><circle cx="618" cy="274" r="2" fill="#f9ecd5"/>
+            <path class="building-door" d="M610 259L641 245V278L610 293Z" fill="#8c8ba8"/><circle cx="618" cy="274" r="2" fill="#f9ecd5"/>
             <path d="M565 98V54L650 84V127Z" fill="#f7f0db" stroke="#80778b" stroke-width="2"/>
             <text x="576" y="75" transform="rotate(19 576 75)" font-size="12" font-weight="bold" fill="#79728c" font-family="monospace">THE WORKSHOP</text>
             <text x="576" y="91" transform="rotate(19 576 91)" font-size="9" fill="#79728c" font-family="monospace">IDEAS → SYSTEMS</text>
@@ -291,7 +291,7 @@
             <path d="M682 249L714 263L697 272L665 258Z" fill="#e6ba86"/><path d="M682 259V278M704 267V284" stroke="#9d8361" stroke-width="3"/>
           </g>
           <use href="#tree" x="731" y="255"/><use href="#tree" transform="translate(770 271) scale(.78)"/>
-          <g class="scene-place" data-place="about">
+          <g class="scene-place" data-place="about" data-destination="capabilities" role="link" tabindex="0" aria-label="Open the greenhouse door: capabilities">
             <path d="M759 315L843 278L929 316L844 359Z" fill="#c4d2b1" stroke="#99ab89" stroke-width="1.5"/>
             <path d="M759 315V337L844 381V359Z" fill="#a9be94" stroke="#99ab89"/><path d="M844 359L929 316V338L844 381Z" fill="#b8cca3" stroke="#99ab89"/>
             <path d="M785 310V245L843 218L900 247V310L843 339Z" fill="#e0eee1" fill-opacity=".85" stroke="#6c8d77" stroke-width="3"/>
@@ -299,7 +299,7 @@
             <path d="M843 218V339M785 276L843 304L900 277M814 232V325M872 234V325M872 225L928 218V282L900 310" fill="none" stroke="#87a58b" stroke-width="2"/>
             <path d="M817 315V293L840 303V328Z" fill="#c98f71"/><use href="#bush" transform="translate(829 294) scale(.63)"/>
             <path d="M859 323V301L878 291V313Z" fill="#d3ad78"/><use href="#bush" transform="translate(871 298) scale(.5)"/>
-            <path d="M793 345L843 370L891 345" fill="none" stroke="#f1e7c9" stroke-width="6"/>
+            <path class="building-door" d="M848 295L869 285V325L848 335Z" fill="#9bb8a2" stroke="#6c8d77" stroke-width="2"/><circle cx="853" cy="315" r="2" fill="#fff5d7"/><path d="M793 345L843 370L891 345" fill="none" stroke="#f1e7c9" stroke-width="6"/>
           </g>
           <use href="#tree" x="960" y="349"/><use href="#bush" x="941" y="373"/>
           <use href="#tree" transform="translate(438 389) scale(.83)"/><use href="#bush" x="422" y="406"/>
