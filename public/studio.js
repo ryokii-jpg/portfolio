@@ -44,7 +44,7 @@
       if (active) tab.setAttribute('aria-current', 'page');else tab.removeAttribute('aria-current');
     });
     const panel = panels.find(p => p.dataset.panel === view);
-    const target = view === 'deployments' && current.endsWith('-detail') ? panel.querySelector(`[data-view="${current}"]`) : panel.querySelector('h1,h2');
+    const target = view === 'deployments' && current.endsWith('-detail') ? panel.querySelector(`[data-exhibit="${current}"]`) : panel.querySelector('h1,h2');
     if (focus && target) { target.setAttribute('tabindex', '-1');target.focus({ preventScroll: true }); }
     window.scrollTo({ top: 0, behavior: 'instant' });
     document.title = 'Mike Fernando — ' + (view === 'profile' ? 'Orbital Systems Station' : panel.querySelector('h2').textContent);
@@ -149,6 +149,27 @@
     document.body.classList.toggle('page-hidden', document.hidden);
     if (document.hidden) navigate(location.hash.slice(1), false);
   });
+
+  const exhibitButtons = [...document.querySelectorAll('[data-exhibit]')];
+  function projectExhibit(button, animate = true) {
+    const card = button.closest('.project-card');
+    const screen = document.querySelector('.projection-screen');
+    exhibitButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    document.getElementById('projection-title').textContent = card.querySelector('h3').textContent;
+    document.getElementById('projection-number').textContent = String(exhibitButtons.indexOf(button) + 1).padStart(2, '0');
+    const preview = card.querySelector('.project-image, .research-preview, .supply-preview').cloneNode(true);
+    preview.querySelectorAll('span').forEach(span => { if (span.parentElement.classList.contains('project-image')) span.remove(); });
+    document.querySelector('.projection-preview').replaceChildren(preview);
+    const link = document.querySelector('.projection-open');link.href = '#' + button.dataset.exhibit;link.dataset.view = button.dataset.exhibit;
+    if (animate && motionEnabled()) screen.animate([
+      { transform: 'translateX(-4px) skewX(-2deg)', opacity: .45 },
+      { transform: 'translateX(3px) skewX(1deg)', opacity: .8, offset: .24 },
+      { transform: 'translateX(-2px)', opacity: .65, offset: .43 },
+      { transform: 'translateX(0)', opacity: 1 }
+    ], { duration: 300, easing: 'steps(2, end)' });
+  }
+  exhibitButtons.forEach(button => button.addEventListener('click', () => projectExhibit(button)));
+  if (exhibitButtons.length) projectExhibit(exhibitButtons[0], false);
 
   // Native dialog provides focus containment and Escape-to-close for image inspection.
   const viewer = document.querySelector('.image-viewer');
