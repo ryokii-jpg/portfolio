@@ -119,7 +119,7 @@
 
     <div class="view command-view" data-panel="about" aria-hidden="true" hidden>
     <section class="command-room" aria-labelledby="command-title">
-<header class="room-header"><div><p class="eyebrow">ORBITAL STATION / MODULE 01</p><h2 id="command-title">Command quarters<span>.</span></h2><p>Step inside the workspace. Meet the human behind the systems.</p></div><a class="room-exit" href="#profile" data-view="profile">&larr; Exit to orbit</a></header>
+<header class="room-header"><div><p class="eyebrow">ORBITAL STATION / MODULE 01</p><h2 id="command-title">Command quarters<span>.</span></h2><p>A small workspace in orbit. Select the picture or the desk terminal to explore.</p></div><a class="room-exit" href="#profile" data-view="profile">&larr; Exit to orbit</a></header>
 <div class="command-interior"><div class="command-shell" aria-hidden="true"><div class="command-roof"></div><div class="command-left-wall"></div><div class="command-right-wall"></div><div class="command-deck"></div><div class="command-porthole"><span></span></div><span class="command-sign">CREW QUARTERS / MF-01</span></div>
 <div class="command-stations">
 
@@ -127,16 +127,9 @@
         <img loading="lazy" decoding="async" src="picture.jpg" alt="City skyline from Mike Fernando's personal archive">
         <p>CREW RECORD / MIKE FERNANDO</p>
       </div>
-      <div class="about-copy command-console">
-        <p class="eyebrow">BACKGROUND / CAPABILITIES</p>
-        <h3>Engineering curiosity into <em>working systems.</em></h3>
-        <p>I’m a Computer Engineering graduate from Holy Angel University and an AI-Augmented Full Stack Developer. I integrate AI across every stage of every web application I create—from research, architecture, and interface design to implementation, testing, debugging, and optimization—while keeping engineering judgment and user needs at the center.</p>
-        <p>Outside the terminal, photography, music, and unfamiliar places keep my perspective calibrated.</p>
-        <div class="capability-grid" id="capability-summary" tabindex="-1">
-          <span>01 / FULL-STACK</span><span>02 / DATABASES</span>
-          <span>03 / AUTOMATION</span><span>04 / AI SYSTEMS</span>
-        </div>
-      </div>
+      <button class="crew-terminal" type="button" aria-haspopup="dialog"><span class="terminal-screen"><small>CREW DATABASE / MF-01</small><strong>Mike Fernando</strong><span>AI-AUGMENTED DEVELOPER</span><i>ACCESS CREW RECORD &nearr;</i></span><span class="terminal-stand"></span></button>
+      <div class="quarters-furniture" aria-hidden="true"><div class="quarters-table"></div><div class="quarters-chair"></div><div class="quarters-bench"></div><div class="quarters-rug"></div></div>
+
 </div><nav class="command-desk" aria-label="Explore station rooms"><span>CONTINUE EXPLORING</span><a href="#capabilities" data-view="capabilities">Capabilities / Bio-dome &nearr;</a><a href="#deployments" data-view="deployments">Projects / Hangar &nearr;</a></nav></div>
     </section>
 </div>
@@ -434,6 +427,16 @@
     </div>
   </main>
 
+  <dialog class="crew-dialog" aria-labelledby="crew-dialog-title"><header><h2 id="crew-dialog-title">Crew record / Mike Fernando</h2><button class="crew-close" type="button" autofocus>Close &times;</button></header>      <div class="about-copy command-console">
+        <p class="eyebrow">BACKGROUND / CAPABILITIES</p>
+        <h3>Engineering curiosity into <em>working systems.</em></h3>
+        <p>I’m a Computer Engineering graduate from Holy Angel University and an AI-Augmented Full Stack Developer. I integrate AI across every stage of every web application I create—from research, architecture, and interface design to implementation, testing, debugging, and optimization—while keeping engineering judgment and user needs at the center.</p>
+        <p>Outside the terminal, photography, music, and unfamiliar places keep my perspective calibrated.</p>
+        <div class="capability-grid" id="capability-summary" tabindex="-1">
+          <span>01 / FULL-STACK</span><span>02 / DATABASES</span>
+          <span>03 / AUTOMATION</span><span>04 / AI SYSTEMS</span>
+        </div>
+      </div></dialog>
   <dialog class="image-viewer" aria-labelledby="viewer-title">
     <div class="viewer-toolbar"><h2 id="viewer-title">Project image</h2><div><button type="button" class="viewer-zoom" aria-pressed="false">Zoom in</button><button type="button" class="viewer-close" autofocus>Close &times;</button></div></div>
     <div class="viewer-canvas"><img class="viewer-image" alt=""></div>

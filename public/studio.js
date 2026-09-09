@@ -155,7 +155,7 @@
   const viewerImage = viewer.querySelector('.viewer-image');
   const zoomButton = viewer.querySelector('.viewer-zoom');
   let imageTrigger = null;
-  document.querySelectorAll('.detail-media > img').forEach(image => {
+  document.querySelectorAll('.detail-media > img, .command-photo > img').forEach(image => {
     const button = document.createElement('button');
     button.type = 'button';button.className = 'inspect-image';button.textContent = 'View full image ↗';
     button.addEventListener('click', () => {
@@ -175,6 +175,16 @@
   viewer.querySelector('.viewer-close').addEventListener('click', () => viewer.close());
   viewer.addEventListener('close', () => { if (imageTrigger) imageTrigger.focus({ preventScroll: true }); });
   window.addEventListener('hashchange', () => { if (viewer.open) viewer.close(); });
+
+  const crewDialog = document.querySelector('.crew-dialog');
+  const crewTerminal = document.querySelector('.crew-terminal');
+  crewTerminal.addEventListener('click', () => {
+    crewDialog.showModal();
+    if (motionEnabled()) crewDialog.animate([{ opacity: 0, transform: 'translateY(25px) scale(.85)' }, { opacity: 1, transform: 'translateY(0) scale(1)' }], { duration: 330, easing: 'ease-out' });
+  });
+  document.querySelector('.crew-close').addEventListener('click', () => crewDialog.close());
+  crewDialog.addEventListener('close', () => crewTerminal.focus({ preventScroll: true }));
+  window.addEventListener('hashchange', () => { if (crewDialog.open) crewDialog.close(); });
 
   const skills = {
     fullstack: ['01', 'Full-stack development', 'Connecting interfaces, server logic, and practical workflows into complete applications.'],
