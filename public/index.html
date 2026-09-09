@@ -69,12 +69,13 @@
     .projects-grid .project-card { grid-template-columns: 44px minmax(0,1fr); grid-template-rows: auto 1fr; margin-top: 0; }
     .projects-grid .project-number { grid-row: 1 / 3; }
     .projects-grid .project-image,
-    .projects-grid .research-preview { grid-column: 2; min-height: 330px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .projects-grid .research-preview,
+    .projects-grid .mind-preview { grid-column: 2; min-height: 330px; border-right: 0; border-bottom: 1px solid var(--line); }
     .projects-grid .project-copy { grid-column: 2; padding: 44px 40px; justify-content: flex-start; }
     .projects-grid .project-copy h3 { font-size: clamp(2rem,3vw,3.2rem); }
     .projects-grid .project-card { cursor: pointer; transition: transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
     .projects-grid .project-card:hover,.projects-grid .project-card:focus-visible { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 22px 60px rgba(0,0,0,.35); outline: none; }
-    .projects-grid .project-image,.projects-grid .research-preview { min-height: 220px; height: 220px; }
+    .projects-grid .project-image,.projects-grid .research-preview,.projects-grid .mind-preview { min-height: 220px; height: 220px; }
     .projects-grid .project-copy { padding: 28px 30px 30px; }
     .projects-grid .project-copy .eyebrow { margin-bottom: 15px; }
     .projects-grid .project-copy h3 { font-size: clamp(1.7rem,2.3vw,2.5rem); margin-bottom: 14px; }
@@ -140,8 +141,19 @@
     .detail-barcode-media { padding: 5vw; display: grid; place-items: center; background: #0b0f14; }
     .detail-barcode-media .barcode-mock { width: 100%; max-width: 440px; }
     .detail-barcode-media .barcode-mock-bars { height: 96px; }
-    @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
-    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .barcode-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .barcode-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
+    .mind-preview { position: relative; min-height: 480px; overflow: hidden; border-right: 1px solid var(--line); padding: 28px; background: radial-gradient(circle at 25% 20%,rgba(130,90,255,.16),transparent 32%),radial-gradient(circle at 80% 70%,rgba(70,207,255,.14),transparent 34%),#0a0d16; }
+    .mind-preview::before { content: ""; position: absolute; inset: 0; opacity: .6; background-image: radial-gradient(circle,#9edbff 0 1px,transparent 1.5px); background-size: 80px 66px; }
+    .mind-hub-wrap { position: relative; z-index: 1; height: 100%; min-height: 420px; }
+    .mind-hub { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 108px; height: 108px; border-radius: 50%; border: 1px solid #4a5fd6; background: radial-gradient(circle,rgba(112,110,255,.35),rgba(20,16,45,.92)); display: grid; place-items: center; text-align: center; font: 700 9px var(--mono); color: #cfe0ff; letter-spacing: .06em; box-shadow: 0 0 40px rgba(112,110,255,.35); }
+    .mind-node { position: absolute; padding: 8px 10px; border: 1px solid #2c3a66; border-radius: 6px; background: rgba(14,18,40,.86); font: 600 8px var(--mono); color: #a9b8e6; letter-spacing: .04em; }
+    .mind-node-a { top: 12%; left: 8%; }
+    .mind-node-b { top: 8%; right: 6%; }
+    .mind-node-c { bottom: 14%; left: 10%; }
+    .mind-node-d { bottom: 10%; right: 8%; }
+    .detail-mind-media { padding: 5vw; display: grid; place-items: center; background: radial-gradient(circle at 25% 20%,rgba(130,90,255,.18),transparent 34%),radial-gradient(circle at 80% 70%,rgba(70,207,255,.16),transparent 36%),#0a0d16; }
+    .detail-mind-media .mind-hub-wrap { width: 100%; min-height: 420px; }
+    @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .mind-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
+    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .barcode-preview,.projects-grid .mind-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .barcode-preview,.projects-grid .mind-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
     @media(max-width:768px){
       html{scroll-padding-top:68px}
       body{width:100%;overflow-x:hidden}
@@ -189,6 +201,7 @@
       .detail-research-media{height:auto;min-height:390px;padding:18px}
       .detail-supply-media{height:auto;min-height:390px;padding:16px}
       .detail-barcode-media{height:auto;min-height:390px;padding:16px}
+      .detail-mind-media{height:auto;min-height:390px;padding:18px}
       .detail-supply-media .supply-shell{min-height:350px;grid-template-columns:28% 1fr}
       .detail-supply-media .supply-banner{height:65px}
       .detail-supply-media .supply-metrics span{height:55px}
@@ -294,7 +307,7 @@
     <section id="deployments" class="projects-section">
       <div class="projects-heading">
         <div><p class="eyebrow">SELECTED DEPLOYMENTS</p><h2>Systems built<br><em>for real users.</em></h2></div>
-        <p class="project-count">ARCHIVE<br><strong>005</strong> / 005</p>
+        <p class="project-count">ARCHIVE<br><strong>006</strong> / 006</p>
       </div>
       <div class="projects-grid">
       <article class="project-card" data-view="zodiacs-detail" role="link" tabindex="0" aria-label="View Zodiacs Portal project details">
@@ -380,6 +393,25 @@
           <h3>Barcode Generator</h3>
           <p>A single-purpose tool that turns any serial number or asset code into a scanner-ready Code 128 barcode, exportable as a high-resolution PNG. Built to pair with CHARMS' asset-tagging workflow, but usable on its own for any labeling need.</p>
           <ul class="tech-list"><li>JavaScript</li><li>Canvas API</li><li>Code 128</li><li>PNG Export</li></ul>
+          <span class="card-action">OPEN PROJECT DOSSIER →</span>
+        </div>
+      </article>
+      <article class="project-card" data-view="mind-detail" role="link" tabindex="0" aria-label="View Central Mind OS project details">
+        <div class="project-number">P-006</div>
+        <div class="mind-preview" role="img" aria-label="Central Mind OS mind-map hub interface">
+          <div class="mind-hub-wrap">
+            <div class="mind-node mind-node-a">FINANCES</div>
+            <div class="mind-node mind-node-b">PRODUCTIVITY</div>
+            <div class="mind-node mind-node-c">CREATIVITY</div>
+            <div class="mind-node mind-node-d">LIFESTYLE</div>
+            <div class="mind-hub">MYSELF</div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <p class="eyebrow">PERSONAL PRODUCTIVITY / OFFLINE-FIRST</p>
+          <h3>Central Mind OS</h3>
+          <p>A fully offline, single-file personal productivity system combining a mind map, task manager, project tracker, and notes app in one dark-themed, glassmorphic interface with real-time 3D visuals and optional cross-device cloud sync.</p>
+          <ul class="tech-list"><li>Vanilla JavaScript</li><li>Three.js</li><li>Firebase Firestore</li><li>localStorage</li></ul>
           <span class="card-action">OPEN PROJECT DOSSIER →</span>
         </div>
       </article>
@@ -520,6 +552,40 @@
             </ul>
             <ul class="tech-list"><li>JavaScript</li><li>Canvas API</li><li>Code 128</li><li>PNG Export</li></ul>
             <a class="primary-btn" href="https://barcode-generator-system.vercel.app/" target="_blank" rel="noopener noreferrer">Launch live system <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="view" data-panel="mind-detail" aria-hidden="true">
+      <section class="detail-page">
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <div class="detail-layout">
+          <div class="detail-media detail-mind-media">
+            <div class="mind-hub-wrap" role="img" aria-label="Central Mind OS mind-map hub interface">
+              <div class="mind-node mind-node-a">FINANCES</div>
+              <div class="mind-node mind-node-b">PRODUCTIVITY</div>
+              <div class="mind-node mind-node-c">CREATIVITY</div>
+              <div class="mind-node mind-node-d">LIFESTYLE</div>
+              <div class="mind-hub">MYSELF</div>
+            </div>
+          </div>
+          <div class="detail-content">
+            <p class="eyebrow">PROJECT DOSSIER / P-006</p>
+            <h2>Central Mind<br><em>OS.</em></h2>
+            <p>Central Mind OS is a self-contained personal life-management application built entirely as a single HTML file — no backend, no build step, running fully offline with all data persisted locally in the browser. It brings together a radial mind-map hub for high-level life categories, full task/goal/note/project CRUD, a calendar with due-date tracking, and an "Accomplished" tracker that automatically aggregates completed work into a searchable list, calendar view, and weekly metrics chart.</p>
+            <p>Each project has its own dedicated page with a work-log composer and a scoped calendar showing exactly which days had logged activity, paginated for readability. The interface features a dark neon glassmorphism design system with an animated Three.js starfield background, a live-rotating 3D icosahedron hub icon, animated SVG "energy pathway" connectors between mind-map nodes, and pointer-following 3D tilt on interactive cards — all respecting prefers-reduced-motion for accessibility.</p>
+            <p>To support use across multiple devices, the app includes an optional Cloud Sync layer built on Firebase Firestore with simple PIN-based access (no account or login required), using debounced writes and a live listener to keep every connected device in sync in real time.</p>
+            <ul class="detail-features">
+              <li>Radial mind-map hub with animated SVG connectors between nodes</li>
+              <li>Full task, goal, note, and project CRUD with a due-date calendar</li>
+              <li>Auto-aggregating "Accomplished" tracker — list, calendar, and weekly metrics chart</li>
+              <li>Per-project work-log composer with a scoped, paginated activity calendar</li>
+              <li>Animated Three.js starfield and rotating 3D icosahedron hub icon</li>
+              <li>Optional PIN-based Firebase Firestore cloud sync across devices, no account required</li>
+            </ul>
+            <ul class="tech-list"><li>Vanilla JavaScript</li><li>HTML5</li><li>CSS3</li><li>Three.js</li><li>Firebase Firestore</li><li>localStorage</li></ul>
+            <div class="project-status">NOT YET DEPLOYED</div>
           </div>
         </div>
       </section>
