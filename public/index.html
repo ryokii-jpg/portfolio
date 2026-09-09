@@ -129,8 +129,19 @@
     .lab-modules { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; padding: 0 12px; }
     .lab-modules div { min-height: 105px; border: 1px solid #263b60; border-radius: 5px; padding: 12px; color: #dbe5fa; font: 600 9px var(--mono); background: rgba(17,30,65,.78); }
     .project-status { width: max-content; padding: 11px 13px; border: 1px solid var(--cyan); color: var(--cyan); font: 600 9px var(--mono); letter-spacing: .1em; }
+    .barcode-preview { position: relative; grid-column: 2; height: 220px; overflow: hidden; border-bottom: 1px solid var(--line); padding: 18px; background: #0b0f14; display: flex; align-items: center; justify-content: center; }
+    .barcode-mock { width: 100%; max-width: 320px; border: 1px solid #2a3540; border-radius: 6px; background: #10161c; overflow: hidden; }
+    .barcode-mock-bar { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; border-bottom: 1px solid #2a3540; font: 600 8px var(--mono); color: var(--cyan); letter-spacing: .08em; }
+    .barcode-mock-body { padding: 16px; }
+    .barcode-mock-input { display: flex; gap: 8px; margin-bottom: 16px; }
+    .barcode-mock-input span { flex: 1; height: 26px; border: 1px solid #2a3540; border-radius: 4px; background: #0b0f14; }
+    .barcode-mock-input b { padding: 0 12px; display: flex; align-items: center; border-radius: 4px; background: var(--cyan); color: #04181a; font: 700 8px var(--mono); }
+    .barcode-mock-bars { height: 54px; border-radius: 4px; background: repeating-linear-gradient(90deg,#e7edf1 0 2px,transparent 2px 4px,#e7edf1 4px 5px,transparent 5px 9px,#e7edf1 9px 12px,transparent 12px 14px); }
+    .detail-barcode-media { padding: 5vw; display: grid; place-items: center; background: #0b0f14; }
+    .detail-barcode-media .barcode-mock { width: 100%; max-width: 440px; }
+    .detail-barcode-media .barcode-mock-bars { height: 96px; }
     @media(max-width:1100px){.projects-grid{grid-template-columns:1fr}.projects-grid .project-image,.projects-grid .research-preview{min-height:250px;height:250px}.detail-layout{grid-template-columns:1fr}.detail-media{min-height:420px;border-right:0;border-bottom:1px solid var(--line)}}
-    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.projects-grid .project-card{grid-template-columns:1fr}.projects-grid .project-number{grid-column:1;grid-row:auto;writing-mode:initial}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .barcode-preview,.projects-grid .project-copy{grid-column:1}.projects-grid .project-image,.projects-grid .research-preview,.projects-grid .supply-preview,.projects-grid .barcode-preview{min-height:220px;height:220px}.projects-grid .project-copy{padding:28px 22px}.research-preview{padding:12px}.lab-window{min-height:310px}.lab-stats span:nth-child(3){display:none}.lab-stats{grid-template-columns:1fr 1fr}}
     @media(max-width:768px){
       html{scroll-padding-top:68px}
       body{width:100%;overflow-x:hidden}
@@ -177,6 +188,7 @@
       .detail-media{width:100%;min-height:260px;height:260px}
       .detail-research-media{height:auto;min-height:390px;padding:18px}
       .detail-supply-media{height:auto;min-height:390px;padding:16px}
+      .detail-barcode-media{height:auto;min-height:390px;padding:16px}
       .detail-supply-media .supply-shell{min-height:350px;grid-template-columns:28% 1fr}
       .detail-supply-media .supply-banner{height:65px}
       .detail-supply-media .supply-metrics span{height:55px}
@@ -282,7 +294,7 @@
     <section id="deployments" class="projects-section">
       <div class="projects-heading">
         <div><p class="eyebrow">SELECTED DEPLOYMENTS</p><h2>Systems built<br><em>for real users.</em></h2></div>
-        <p class="project-count">ARCHIVE<br><strong>004</strong> / 004</p>
+        <p class="project-count">ARCHIVE<br><strong>005</strong> / 005</p>
       </div>
       <div class="projects-grid">
       <article class="project-card" data-view="zodiacs-detail" role="link" tabindex="0" aria-label="View Zodiacs Portal project details">
@@ -347,6 +359,28 @@
           <p>A full-stack custodian and resource asset management system that tracks PPE and semi-expendable items from acquisition through issuance, transfer, return, and disposal.</p>
           <ul class="tech-list"><li>Node.js</li><li>Express</li><li>SQLite</li><li>EJS</li><li>Bootstrap</li></ul>
           <span class="card-action">OPEN PROJECT DOSSIER â†’</span>
+        </div>
+      </article>
+      <article class="project-card" data-view="barcode-detail" role="link" tabindex="0" aria-label="View Barcode Generator project details">
+        <div class="project-number">P-005</div>
+        <a class="project-image" href="https://barcode-generator-system.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <div class="barcode-preview" role="img" aria-label="Barcode Generator tool interface">
+            <div class="barcode-mock">
+              <div class="barcode-mock-bar"><span>CODE 128</span><span>GENERATE</span></div>
+              <div class="barcode-mock-body">
+                <div class="barcode-mock-input"><span></span><b>GO</b></div>
+                <div class="barcode-mock-bars"></div>
+              </div>
+            </div>
+          </div>
+          <span>LIVE SYSTEM ↗</span>
+        </a>
+        <div class="project-copy">
+          <p class="eyebrow">UTILITY TOOL / CLIENT-SIDE</p>
+          <h3>Barcode Generator</h3>
+          <p>A single-purpose tool that turns any serial number or asset code into a scanner-ready Code 128 barcode, exportable as a high-resolution PNG. Built to pair with CHARMS' asset-tagging workflow, but usable on its own for any labeling need.</p>
+          <ul class="tech-list"><li>JavaScript</li><li>Canvas API</li><li>Code 128</li><li>PNG Export</li></ul>
+          <span class="card-action">OPEN PROJECT DOSSIER →</span>
         </div>
       </article>
       </div>
@@ -456,6 +490,36 @@
             </ul>
             <ul class="tech-list"><li>Node.js</li><li>Express</li><li>SQLite</li><li>better-sqlite3</li><li>EJS</li><li>Vanilla JS</li><li>Bootstrap</li></ul>
             <div class="project-status">PRIVATE PUBLIC-SECTOR DEPLOYMENT</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="view" data-panel="barcode-detail" aria-hidden="true">
+      <section class="detail-page">
+        <a class="detail-back" href="#deployments" data-view="deployments">← RETURN TO DEPLOYMENTS</a>
+        <div class="detail-layout">
+          <div class="detail-media detail-barcode-media">
+            <div class="barcode-mock" role="img" aria-label="Barcode Generator tool interface">
+              <div class="barcode-mock-bar"><span>CODE 128</span><span>GENERATE</span></div>
+              <div class="barcode-mock-body">
+                <div class="barcode-mock-input"><span></span><b>GO</b></div>
+                <div class="barcode-mock-bars"></div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-content">
+            <p class="eyebrow">PROJECT DOSSIER / P-005</p>
+            <h2>Barcode<br><em>Generator.</em></h2>
+            <p>A focused utility that converts any serial number or asset code into a scanner-ready Code 128 barcode and exports it as a high-resolution PNG. It grew out of CHARMS' asset-tagging needs, then was pulled into its own standalone tool for any labeling job that needs a quick, reliable barcode.</p>
+            <ul class="detail-features">
+              <li>Code 128 encoding for standard letters, numbers, spaces, and punctuation</li>
+              <li>High-resolution PNG export, ready to print or paste into a label sheet</li>
+              <li>Entirely client-side — barcode data is generated locally and never uploaded</li>
+              <li>Zero setup: open the page, type a value, generate</li>
+            </ul>
+            <ul class="tech-list"><li>JavaScript</li><li>Canvas API</li><li>Code 128</li><li>PNG Export</li></ul>
+            <a class="primary-btn" href="https://barcode-generator-system.vercel.app/" target="_blank" rel="noopener noreferrer">Launch live system <span>↗</span></a>
           </div>
         </div>
       </section>
